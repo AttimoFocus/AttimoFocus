@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【仮】Attimo Focus | Photographer LP</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Noto+Serif+JP:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Serif JP', serif;
+            color: #333;
+            background-color: #faf9f8;
+        }
+
+        h1,
+        h2,
+        h3,
+        .en-font {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .marquee {
+            width: max-content;
+            animation: marquee 30s linear infinite;
+        }
+
+        .marquee-item {
+            height: 400px;
+            width: auto;
+            flex-shrink: 0;
+            border-radius: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .marquee-item {
+                height: 250px;
+            }
+        }
+
+        .hero-bg {
+            /* ヒーローエリアの画像（追加いただいた写真） */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('assets/hero.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-position: center bottom;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .img-placeholder {
+            background-color: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-family: sans-serif;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .img-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .img-placeholder:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- ナビゲーション -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white/80 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <span
+                        class="font-bold text-lg md:text-xl tracking-widest en-font text-gray-800 flex flex-col items-start leading-none">
+                        <span>Attimo Focus</span>
+                        <span
+                            class="text-[9px] md:text-[10px] font-normal font-sans text-gray-500 mt-1 tracking-wider">PHOTOGRAPHER</span>
+                    </span>
+                </div>
+                <!-- Links -->
+                <div class="flex items-center space-x-5 md:space-x-8">
+                    <a href="#plans" class="text-gray-800 hover:text-gray-900 transition text-sm font-bold">PLANS</a>
+                    <a href="#reserve"
+                        class="bg-gray-900 text-white px-5 py-2 text-xs md:text-sm rounded-full hover:bg-gray-800 transition font-bold shadow-md">RESERVE</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero セクション -->
+    <header class="relative h-[80vh] md:h-screen flex items-center justify-center hero-bg">
+        <div class="text-center text-white z-10 px-4 fade-in">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-light tracking-widest mb-6 drop-shadow-lg">
+                <span class="block text-2xl md:text-3xl mb-4 font-serif">日常を、ちょっとシネマティックに</span>
+            </h1>
+            <p class="mt-4 text-base md:text-lg font-light tracking-wider drop-shadow-md">
+                ただ記録するだけでなく、その日の空気ごと残す。<br />
+                写真とショート動画で紡ぐ、あなただけの物語。
+            </p>
+        </div>
+        <div class="absolute bottom-10 inset-x-0 w-full text-center text-white animate-bounce">
+            <span class="text-xs tracking-widest uppercase en-font drop-shadow-md">Scroll Down</span>
+        </div>
+    </header>
+
+    <!-- Concept セクション（現在のトレンドを反映した強み） -->
+    <section id="concept" class="py-24 px-4 bg-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-light tracking-widest en-font mb-2 text-gray-800">REASONS TO CHOOSE US</h2>
+            <p class="text-sm text-gray-500 mb-12 tracking-widest">選ばれる理由・大切にしていること</p>
+
+            <p class="text-lg md:text-xl leading-relaxed text-gray-700 font-light mb-16">
+                結婚も、子どもの成長も、何気ない休日も。<br>
+                人生という映画の大切な一場面です。<br><br>
+                「きっちりポーズを決めた写真」だけでなく、<br>
+                ふと見せた自然な笑顔、会話する声、その場の空気感。<br>
+                それらを余すことなく残すための、新しいスタンダードを提供します。
+            </p>
+
+            <!-- トレンドポイント -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 text-left">
+                <!-- Concept 1 -->
+                <div class="relative bg-white p-8 rounded-xl overflow-hidden shadow-sm border border-gray-100 group">
+                    <div class="absolute inset-0 bg-cover bg-center opacity-20 transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('assets/gallery/gallery_1.jpg');"></div>
+                    <div class="absolute inset-0 bg-white/60"></div>
+                    <div class="relative z-10">
+                        <span class="text-xs font-bold text-gray-800 en-font uppercase block mb-2">01. Photo &
+                            Video</span>
+                        <h3 class="text-xl mb-4 font-bold text-gray-900">写真＋ショート動画の<br />ハイブリッド撮影</h3>
+                        <p class="text-sm text-gray-800 leading-relaxed font-medium">
+                            美しい写真データはもちろん、SNSですぐにシェアできるショート動画も同時に撮影。1度の撮影で2つの魅力を残せます。※こちらで縦型ショート動画として見やすく編集・制作いたします。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Concept 2 -->
+                <div class="relative bg-white p-8 rounded-xl overflow-hidden shadow-sm border border-gray-100 group">
+                    <div class="absolute inset-0 bg-cover bg-center opacity-20 transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('assets/gallery/gallery_2.jpg');"></div>
+                    <div class="absolute inset-0 bg-white/60"></div>
+                    <div class="relative z-10">
+                        <span class="text-xs font-bold text-gray-800 en-font uppercase block mb-2">02. Natural
+                            Vibe</span>
+                        <h3 class="text-xl mb-4 font-bold text-gray-900">作り込まない<br />「自然体」を引き出す</h3>
+                        <p class="text-sm text-gray-800 leading-relaxed font-medium">
+                            「撮影されるのが苦手…」という方もご安心を。友人と遊んでいるようなリラックスした雰囲気づくりを心がけ、“ありのままの飾らない美しさ”やシネマティックな瞬間を切り取ります。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Concept 3 -->
+                <div class="relative bg-white p-8 rounded-xl overflow-hidden shadow-sm border border-gray-100 group">
+                    <div class="absolute inset-0 bg-cover bg-center opacity-20 transition-transform duration-700 group-hover:scale-110"
+                        style="background-image: url('assets/gallery/gallery_3.jpg');"></div>
+                    <div class="absolute inset-0 bg-white/60"></div>
+                    <div class="relative z-10">
+                        <span class="text-xs font-bold text-gray-800 en-font uppercase block mb-2">03. Quick
+                            Delivery</span>
+                        <h3 class="text-xl mb-4 font-bold text-gray-900">熱量が冷めないうちの<br />翌日ダイジェスト納品</h3>
+                        <p class="text-sm text-gray-800 leading-relaxed font-medium">
+                            撮影の感動をすぐにご家族や友人にシェアできるよう、スマホ用のダイジェストショートムービーは「極力翌日」の先行納品を心がけております。全データ納品までワクワクしてお待ちいただけます。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About セクション（ここにご自身の情報を追記） -->
+    <section id="about" class="py-24 px-4 bg-[#f8f7f5]">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/2">
+                    <div class="aspect-[3/4] overflow-hidden rounded-lg bg-gray-100 relative group">
+                        <img src="assets/profile.jpg"
+                            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                            alt="Photographer Portrait">
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-3xl font-light tracking-widest en-font mb-2 text-gray-800">ABOUT ME</h2>
+                    <p class="text-sm text-gray-500 mb-8 tracking-widest">ご挨拶</p>
+
+                    <h3 class="text-xl mb-6">はじめまして、Daikiです。</h3>
+                    <div class="text-sm text-gray-600 leading-loose space-y-4">
+                        <p>
+                            ファミリーでの写真・映像撮影を中心に、自然な表情と空気感を大切に記録しています。<br>
+                            お二人の雰囲気や、ワンちゃん・お子様とのご家族のあたたかい時間がそのまま伝わるよう、<br>
+                            事前の打ち合わせから丁寧に寄り添うことを大切にしています。
+                        </p>
+                        <p>
+                            撮影当日は「とにかくリラックスして楽しめる」雰囲気づくりを心がけております。<br>
+                            「写真を見返すと、あの日の笑い声まで聴こえてくる」<br>
+                            そんな体験をお届けします。どんな小さなご相談でも、お気軽にお声がけください。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans セクション -->
+    <section id="plans" class="py-24 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-light tracking-widest en-font mb-2 text-gray-800">PLANS</h2>
+                <p class="text-sm text-gray-500 tracking-widest">撮影プラン</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Plan 1 -->
+                <div
+                    class="border border-gray-100 rounded-lg p-8 hover:shadow-xl transition-shadow bg-gray-50/50 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-gray-800 text-white text-xs px-3 py-1 font-bold">1番人気</div>
+                    <h3 class="text-xl mb-1 mt-2">Half Birthday & Location</h3>
+                    <p class="en-font tracking-wider text-sm text-gray-400 mb-6">ハーフバースデー / 出張・自宅撮影等</p>
+                    <ul class="text-sm text-gray-600 space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <span class="text-gray-400 mr-2">✓</span>
+                            <span>Photo 100cut〜 (全データレタッチ)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-400 mr-2">✓</span>
+                            <span>Movie (思い出を動くカタチで)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-400 mr-2">✓</span>
+                            <span>翌日スマホ用ショート動画プレゼント</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-400 mr-2">✓</span>
+                            <span>出張・ご自宅でのリラックスした撮影</span>
+                        </li>
+                    </ul>
+                    <p class="text-lg font-bold">¥23,000 <span class="text-xs font-normal text-gray-500">(税込)</span></p>
+                </div>
+
+                <!-- Plan 2 -->
+                <div class="border border-gray-100 rounded-lg p-8 hover:shadow-xl transition-shadow bg-gray-50/50">
+                    <h3 class="text-xl mb-1 mt-2">Family</h3>
+                    <p class="en-font tracking-wider text-sm text-gray-400 mb-6">ファミリー撮影</p>
+                    <ul class="text-sm text-gray-600 space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <span class="text-gray-400 mr-2">✓</span>
+                            <span>Photo 50cut〜 (全データレタッチ)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-400 mr-2">✓</span>
+                            <span>いつものご自宅や公園でのロケ撮影</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-400 mr-2">✓</span>
+                            <span>雨天などの延期は無料対応</span>
+                        </li>
+                    </ul>
+                    <p class="text-lg font-bold">¥14,000 <span class="text-xs font-normal text-gray-500">(税込)</span></p>
+                </div>
+
+                <!-- Plan 3 -->
+                <div class="border border-gray-100 rounded-lg p-8 hover:shadow-xl transition-shadow bg-gray-50/50">
+                    <h3 class="text-xl mb-1 mt-2">Promotion</h3>
+                    <p class="en-font tracking-wider text-sm text-gray-400 mb-6">プロモーション / 企業 / 個人サロン</p>
+                    <ul class="text-sm text-gray-600 space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <span class="text-gray-400 mr-2">✓</span>
+                            <span>Photo 100cut (全データレタッチ)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-400 mr-2">✓</span>
+                            <span>Movie 2〜3分 (HPやSNS広告用)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-400 mr-2">✓</span>
+                            <span>Instagramリール用縦型動画も制作可</span>
+                        </li>
+                    </ul>
+                    <p class="text-lg font-bold">価格要相談</p>
+                </div>
+
+                <!-- Plan 4 (New) -->
+                <div class="border border-gray-100 rounded-lg p-8 hover:shadow-xl transition-shadow bg-gray-50/50">
+                    <h3 class="text-xl mb-1 mt-2">Events</h3>
+                    <p class="en-font tracking-wider text-sm text-gray-400 mb-6">七五三 / お宮参り / 入園・入学・卒業式など</p>
+                    <ul class="text-sm text-gray-600 space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <span class="text-gray-400 mr-2">✓</span>
+                            <span>Photo 100cut〜 (全データレタッチ)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-400 mr-2">✓</span>
+                            <span>ダイジェストMovie付き</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-400 mr-2">✓</span>
+                            <span>神社・施設等での撮影許可確認<br>（要相談・基本はお客様へお願いしております）</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-400 mr-2">✓</span>
+                            <span>着付けサービスは含まれません</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-gray-400 mr-2">✓</span>
+                            <span>立川駅周辺エリアの場合、提携美容院のご紹介が可能です</span>
+                        </li>
+                    </ul>
+                    <p class="text-lg font-bold">¥33,000</p>
+                </div>
+            </div>
+
+            <!-- キャンセル規定 -->
+            <div
+                class="mt-8 text-sm text-gray-500 bg-gray-50 p-5 rounded-lg border border-gray-100 max-w-2xl mx-auto md:mx-0">
+                <p class="font-bold text-gray-700 mb-2 flex items-center">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    キャンセルに関する規定
+                </p>
+                <div class="space-y-1">
+                    <p>・体調不良や悪天候（雨天等）による日程の<span class="font-bold text-gray-800">「延期」</span>につきましては、キャンセル料はいただいておりません。
+                    </p>
+                    <p>・お客様のご都合によるキャンセルの場合は、枠を確保している関係上<span class="text-red-500 font-bold">20%のキャンセル料</span>を申し受けております。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery セクション（ご自身の作例を追記） -->
+    <section id="gallery" class="py-24 px-4 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto text-center mb-16">
+            <h2 class="text-3xl font-light tracking-widest en-font mb-2">GALLERY</h2>
+            <p class="text-sm text-gray-400 tracking-widest">撮影ギャラリー</p>
+        </div>
+
+        <!-- ギャラリー無限スクロール（画像が動く仕様） -->
+        <div class="w-full overflow-hidden relative pb-12">
+            <div class="flex gap-4 marquee">
+                <!-- 1巡目 -->
+                <img src="assets/gallery/gallery_1.jpg"
+                    class="marquee-item object-cover rounded-lg shadow-xl hover:scale-[1.02] transition-transform duration-500"
+                    alt="Gallery">
+                <img src="assets/gallery/gallery_4.jpg"
+                    class="marquee-item object-cover rounded-lg shadow-xl hover:scale-[1.02] transition-transform duration-500"
+                    alt="Gallery">
+                <img src="assets/gallery/gallery_2.jpg"
+                    class="marquee-item object-cover rounded-lg shadow-xl hover:scale-[1.02] transition-transform duration-500"
+                    alt="Gallery">
+                <img src="assets/gallery/gallery_5.jpg"
+                    class="marquee-item object-cover rounded-lg shadow-xl hover:scale-[1.02] transition-transform duration-500"
+                    alt="Gallery">
+                <img src="assets/gallery/gallery_3.jpg"
+                    class="marquee-item object-cover rounded-lg shadow-xl hover:scale-[1.02] transition-transform duration-500"
+                    alt="Gallery">
+                <!-- 2巡目（ループ用） -->
+                <img src="assets/gallery/gallery_1.jpg"
+                    class="marquee-item object-cover rounded-lg shadow-xl hover:scale-[1.02] transition-transform duration-500"
+                    alt="Gallery">
+                <img src="assets/gallery/gallery_4.jpg"
+                    class="marquee-item object-cover rounded-lg shadow-xl hover:scale-[1.02] transition-transform duration-500"
+                    alt="Gallery">
+                <img src="assets/gallery/gallery_2.jpg"
+                    class="marquee-item object-cover rounded-lg shadow-xl hover:scale-[1.02] transition-transform duration-500"
+                    alt="Gallery">
+                <img src="assets/gallery/gallery_5.jpg"
+                    class="marquee-item object-cover rounded-lg shadow-xl hover:scale-[1.02] transition-transform duration-500"
+                    alt="Gallery">
+                <img src="assets/gallery/gallery_3.jpg"
+                    class="marquee-item object-cover rounded-lg shadow-xl hover:scale-[1.02] transition-transform duration-500"
+                    alt="Gallery">
+            </div>
+
+            <!-- 両サイドのフェード効果 -->
+            <div
+                class="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-gray-900 to-transparent pointer-events-none">
+            </div>
+            <div
+                class="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-gray-900 to-transparent pointer-events-none">
+            </div>
+        </div>
+        <div class="text-center mt-12">
+            <a href="https://www.instagram.com/daiki_photo7?igsh=MTN5bW96NGdoajM3aQ%3D%3D&utm_source=qr" target="_blank"
+                rel="noopener noreferrer"
+                class="inline-block border border-white text-white px-8 py-3 text-sm tracking-widest hover:bg-white hover:text-gray-900 transition duration-300 en-font">VIEW
+                MORE ON INSTAGRAM</a>
+        </div>
+    </section>
+
+    <!-- Flow セクション -->
+    <section id="flow" class="py-24 px-4 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-light tracking-widest en-font mb-2 text-gray-800">FLOW</h2>
+                <p class="text-sm text-gray-500 tracking-widest">撮影までの流れ</p>
+            </div>
+
+            <div
+                class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-gray-200 before:to-transparent">
+
+                <!-- Step 1 -->
+                <div
+                    class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div
+                        class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-gray-800 text-slate-100 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow">
+                        <span class="text-sm en-font">1</span>
+                    </div>
+                    <div
+                        class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-gray-50 p-6 rounded border border-gray-100">
+                        <h4 class="font-bold text-gray-800 mb-2">① お問い合わせ</h4>
+                        <p class="text-sm text-gray-600 line-clamp-3 mb-4">公式LINEまたは本サイトの予約フォームより、希望のプランと日時をご連絡ください。</p>
+                        <a href="https://lin.ee/yvDNcif" target="_blank" rel="noopener noreferrer"
+                            class="inline-flex items-center text-xs font-bold bg-[#06C755] text-white px-4 py-2 rounded-full hover:bg-[#05b34c] transition shadow-sm">
+                            <svg class="w-4 h-4 mr-1.5" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.122.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.572-3.843 2.572-5.992zm-14.888.889h-2.184v-3.522c0-.348-.282-.631-.631-.631s-.631.283-.631.631v4.153c0 .348.282.631.631.631h2.815c.348 0 .631-.283.631-.631s-.283-.631-.631-.631zm3.837 0h-1.229v-3.522c0-.348-.282-.631-.631-.631s-.631.283-.631.631v3.522c0 .348.282.631.631.631h1.229c.348 0 .631-.283.631-.631s-.283-.631-.631-.631zm3.838-3.522v3.522c0 .348-.282.631-.631.631s-.631-.283-.631-.631v-1.638l-1.574 2.115c-.092.124-.236.197-.39-.197s-.299-.074-.391-.197c-.129-.174-.199-.387-.199-.61v-3.389c0-.348.282-.631.631-.631s.631.283.631.631v1.638l1.574-2.115c.092-.124.236-.197.39-.197s.299.074.391.197c.129.174.199.387.199.61z" />
+                            </svg>
+                            公式LINEで問い合わせる
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div
+                    class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div
+                        class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-gray-800 text-slate-100 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow">
+                        <span class="text-sm en-font">2</span>
+                    </div>
+                    <div
+                        class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-gray-50 p-6 rounded border border-gray-100">
+                        <h4 class="font-bold text-gray-800 mb-2">② お申し込み・事前面談</h4>
+                        <p class="text-sm text-gray-600 line-clamp-3">不安な方はお申し込み前にZOOM等で軽くご相談頂くことも可能です。内容に合意後、正式手配となります。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div
+                    class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div
+                        class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-gray-800 text-slate-100 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow">
+                        <span class="text-sm en-font">3</span>
+                    </div>
+                    <div
+                        class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-gray-50 p-6 rounded border border-gray-100">
+                        <h4 class="font-bold text-gray-800 mb-2">③ お打ち合わせ</h4>
+                        <p class="text-sm text-gray-600 line-clamp-3">
+                            ZOOM等にて、撮影のイメージや着たい衣装、全体のスケジュール、どんな雰囲気にしたいかなどを楽しく相談します。</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div
+                    class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div
+                        class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-gray-800 text-slate-100 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow">
+                        <span class="text-sm en-font">4</span>
+                    </div>
+                    <div
+                        class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-gray-50 p-6 rounded border border-gray-100">
+                        <h4 class="font-bold text-gray-800 mb-2">④ 撮影当日</h4>
+                        <p class="text-sm text-gray-600 line-clamp-3">撮影自体が一つの楽しい思い出になるよう心がけます。緊張せず、思いっきり一日を楽しみましょう！</p>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div
+                    class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                    <div
+                        class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-gray-800 text-slate-100 shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow">
+                        <span class="text-sm en-font">5</span>
+                    </div>
+                    <div
+                        class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-gray-50 p-6 rounded border border-gray-100">
+                        <h4 class="font-bold text-gray-800 mb-2">⑤ データ納品</h4>
+                        <p class="text-sm text-gray-600 line-clamp-3">
+                            翌日〜数日以内にスマホ用先行ダイジェスト動画をプレゼント。その後、丁寧にレタッチを加えた全ファイルをオンラインで納品致します。</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Review & Voices (Optional) -->
+    <section class="py-24 px-4 bg-[#f8f7f5]">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-light tracking-widest en-font mb-2 text-gray-800">VOICES</h2>
+                <p class="text-sm text-gray-500 tracking-widest">お客様のお声</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <div class="text-yellow-400 text-sm mb-4">★★★★★</div>
+                    <p class="text-sm text-gray-600 mb-6 leading-relaxed">
+                        「ハーフバースデーの出張撮影をお願いしました！daikiさんと保育士の奥様のおかげで、子どもも私たちも終始リラックスでき、本当に楽しい時間になりました。できあがった写真やショート動画も素敵すぎて、毎日見返しています。」
+                    </p>
+                    <p class="text-xs text-gray-400 text-right">- ハーフバースデー出張撮影 H様ご家族</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <div class="text-yellow-400 text-sm mb-4">★★★★★</div>
+                    <p class="text-sm text-gray-600 mb-6 leading-relaxed">
+                        「子どもがグズってしまわないか心配でしたが、上手くあやしながら、その時期でしか残せない自然な泣き顔まで愛おしく撮ってくださり大満足です。また七五三でもお願いしたいです！」</p>
+                    <p class="text-xs text-gray-400 text-right">- ファミリー撮影 S様ご家族</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Options (Standalone Section) -->
+    <section id="options" class="py-24 px-4 bg-gray-50 border-t border-gray-100">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-light tracking-widest en-font mb-2 text-gray-800">OPTIONS</h2>
+                <p class="text-sm text-gray-500 tracking-widest">オプション商品</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- PRINT -->
+                <div class="lg:col-span-1">
+                    <h4
+                        class="font-bold border-b-2 border-gray-800 pb-2 mb-6 text-gray-800 flex items-center justify-between">
+                        <div>
+                            <span class="bg-gray-800 text-white text-xs px-2 py-1 mr-2 rounded">PRINT</span>
+                            プリントアイテム
+                        </div>
+                    </h4>
+                    <ul class="space-y-4 text-sm text-gray-700">
+                        <li class="flex justify-between items-center bg-white p-4 rounded shadow-sm">
+                            <span>Tシャツ</span><span class="font-bold text-gray-900">¥5,000</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-white p-4 rounded shadow-sm">
+                            <span>マグカップ</span><span class="font-bold text-gray-900">¥4,200</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-white p-4 rounded shadow-sm">
+                            <span>クッション<br><span class="text-xs text-gray-500">300×300mm</span></span>
+                            <span class="font-bold text-gray-900 text-right"><span class="text-xs font-normal">片面</span>
+                                ¥5,000<br><span class="text-xs font-normal">両面</span> ¥6,800</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-white p-4 rounded shadow-sm">
+                            <span>トートバッグ<br><span class="text-xs text-gray-500">S (200×300) / M (373×350)</span></span>
+                            <span class="font-bold text-gray-900 text-right"><span class="text-xs font-normal">S</span>
+                                ¥5,000<br><span class="text-xs font-normal">M</span> ¥5,700</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-white p-4 rounded shadow-sm">
+                            <span>スマホリング</span><span class="font-bold text-gray-900">¥3,000</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-white p-4 rounded shadow-sm">
+                            <span>スマホ手帳</span><span class="font-bold text-gray-900">¥6,000</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- BOOK -->
+                <div class="lg:col-span-1">
+                    <h4
+                        class="font-bold border-b-2 border-gray-800 pb-2 mb-6 text-gray-800 flex items-center justify-between">
+                        <div>
+                            <span class="bg-gray-800 text-white text-xs px-2 py-1 mr-2 rounded">BOOK</span>
+                            フォトブック
+                        </div>
+                    </h4>
+                    <p class="text-xs text-gray-500 mb-4 px-1">※全種類、元画像の料金に制作費（+1,500円）が含まれた金額設定となっております。</p>
+
+                    <details class="group bg-white rounded shadow-sm border border-gray-100 mb-4 overflow-hidden">
+                        <summary
+                            class="flex justify-between items-center p-4 font-bold text-sm text-gray-800 cursor-pointer bg-gray-100 hover:bg-gray-200 transition">
+                            <span>ハードカバー</span>
+                            <span class="transition group-open:rotate-180">▼</span>
+                        </summary>
+                        <div class="p-4 border-t border-gray-100 text-sm space-y-3">
+                            <details class="group/size bg-gray-50 rounded border border-gray-100 overflow-hidden">
+                                <summary
+                                    class="flex justify-between items-center p-3 font-bold text-gray-700 cursor-pointer hover:bg-gray-100 transition">
+                                    <span>145×145mm</span>
+                                    <span class="transition group-open/size:rotate-180 text-xs text-gray-400">▼</span>
+                                </summary>
+                                <div class="p-3 border-t border-gray-100 bg-white">
+                                    <ul class="space-y-2 text-gray-600">
+                                        <li class="flex justify-between"><span>16ページ</span><span
+                                                class="font-bold text-gray-900">¥5,180</span></li>
+                                        <li class="flex justify-between"><span>24ページ</span><span
+                                                class="font-bold text-gray-900">¥5,940</span></li>
+                                        <li class="flex justify-between"><span>32ページ</span><span
+                                                class="font-bold text-gray-900">¥6,700</span></li>
+                                        <li class="flex justify-between"><span>40ページ</span><span
+                                                class="font-bold text-gray-900">¥7,460</span></li>
+                                        <li class="flex justify-between"><span>48ページ</span><span
+                                                class="font-bold text-gray-900">¥8,220</span></li>
+                                    </ul>
+                                </div>
+                            </details>
+                            <details class="group/size bg-gray-50 rounded border border-gray-100 overflow-hidden">
+                                <summary
+                                    class="flex justify-between items-center p-3 font-bold text-gray-700 cursor-pointer hover:bg-gray-100 transition">
+                                    <span>185×185mm</span>
+                                    <span class="transition group-open/size:rotate-180 text-xs text-gray-400">▼</span>
+                                </summary>
+                                <div class="p-3 border-t border-gray-100 bg-white">
+                                    <ul class="space-y-2 text-gray-600">
+                                        <li class="flex justify-between"><span>16ページ</span><span
+                                                class="font-bold text-gray-900">¥6,280</span></li>
+                                        <li class="flex justify-between"><span>24ページ</span><span
+                                                class="font-bold text-gray-900">¥7,280</span></li>
+                                        <li class="flex justify-between"><span>32ページ</span><span
+                                                class="font-bold text-gray-900">¥8,280</span></li>
+                                        <li class="flex justify-between"><span>40ページ</span><span
+                                                class="font-bold text-gray-900">¥9,280</span></li>
+                                        <li class="flex justify-between"><span>48ページ</span><span
+                                                class="font-bold text-gray-900">¥10,280</span></li>
+                                    </ul>
+                                </div>
+                            </details>
+                            <details class="group/size bg-gray-50 rounded border border-gray-100 overflow-hidden">
+                                <summary
+                                    class="flex justify-between items-center p-3 font-bold text-gray-700 cursor-pointer hover:bg-gray-100 transition">
+                                    <span>205×145mm</span>
+                                    <span class="transition group-open/size:rotate-180 text-xs text-gray-400">▼</span>
+                                </summary>
+                                <div class="p-3 border-t border-gray-100 bg-white">
+                                    <ul class="space-y-2 text-gray-600">
+                                        <li class="flex justify-between"><span>16ページ</span><span
+                                                class="font-bold text-gray-900">¥5,580</span></li>
+                                        <li class="flex justify-between"><span>24ページ</span><span
+                                                class="font-bold text-gray-900">¥6,740</span></li>
+                                        <li class="flex justify-between"><span>32ページ</span><span
+                                                class="font-bold text-gray-900">¥7,900</span></li>
+                                        <li class="flex justify-between"><span>40ページ</span><span
+                                                class="font-bold text-gray-900">¥9,060</span></li>
+                                        <li class="flex justify-between"><span>48ページ</span><span
+                                                class="font-bold text-gray-900">¥10,220</span></li>
+                                    </ul>
+                                </div>
+                            </details>
+                            <details class="group/size bg-gray-50 rounded border border-gray-100 overflow-hidden">
+                                <summary
+                                    class="flex justify-between items-center p-3 font-bold text-gray-700 cursor-pointer hover:bg-gray-100 transition">
+                                    <span>287×203mm</span>
+                                    <span class="transition group-open/size:rotate-180 text-xs text-gray-400">▼</span>
+                                </summary>
+                                <div class="p-3 border-t border-gray-100 bg-white">
+                                    <ul class="space-y-2 text-gray-600">
+                                        <li class="flex justify-between"><span>16ページ</span><span
+                                                class="font-bold text-gray-900">¥8,480</span></li>
+                                        <li class="flex justify-between"><span>24ページ</span><span
+                                                class="font-bold text-gray-900">¥10,320</span></li>
+                                        <li class="flex justify-between"><span>32ページ</span><span
+                                                class="font-bold text-gray-900">¥12,160</span></li>
+                                        <li class="flex justify-between"><span>40ページ</span><span
+                                                class="font-bold text-gray-900">¥14,000</span></li>
+                                        <li class="flex justify-between"><span>48ページ</span><span
+                                                class="font-bold text-gray-900">¥15,840</span></li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                    </details>
+
+                    <details class="group bg-white rounded shadow-sm border border-gray-100 mb-4 overflow-hidden">
+                        <summary
+                            class="flex justify-between items-center p-4 font-bold text-sm text-gray-800 cursor-pointer bg-gray-100 hover:bg-gray-200 transition">
+                            <span>ソフトカバー</span>
+                            <span class="transition group-open:rotate-180">▼</span>
+                        </summary>
+                        <details class="group/size bg-gray-50 rounded border border-gray-100 overflow-hidden">
+                            <summary
+                                class="flex justify-between items-center p-3 font-bold text-gray-700 cursor-pointer hover:bg-gray-100 transition">
+                                <span>145×145mm</span>
+                                <span class="transition group-open/size:rotate-180 text-xs text-gray-400">▼</span>
+                            </summary>
+                            <div class="p-3 border-t border-gray-100 bg-white">
+                                <ul class="space-y-2 text-gray-600">
+                                    <li class="flex justify-between"><span>16ページ</span><span
+                                            class="font-bold text-gray-900">¥3,070</span></li>
+                                    <li class="flex justify-between"><span>24ページ</span><span
+                                            class="font-bold text-gray-900">¥3,470</span></li>
+                                    <li class="flex justify-between"><span>32ページ</span><span
+                                            class="font-bold text-gray-900">¥3,870</span></li>
+                                    <li class="flex justify-between"><span>40ページ</span><span
+                                            class="font-bold text-gray-900">¥4,270</span></li>
+                                    <li class="flex justify-between"><span>48ページ</span><span
+                                            class="font-bold text-gray-900">¥4,670</span></li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details class="group/size bg-gray-50 rounded border border-gray-100 overflow-hidden">
+                            <summary
+                                class="flex justify-between items-center p-3 font-bold text-gray-700 cursor-pointer hover:bg-gray-100 transition">
+                                <span>185×185mm</span>
+                                <span class="transition group-open/size:rotate-180 text-xs text-gray-400">▼</span>
+                            </summary>
+                            <div class="p-3 border-t border-gray-100 bg-white">
+                                <ul class="space-y-2 text-gray-600">
+                                    <li class="flex justify-between"><span>16ページ</span><span
+                                            class="font-bold text-gray-900">¥4,330</span></li>
+                                    <li class="flex justify-between"><span>24ページ</span><span
+                                            class="font-bold text-gray-900">¥4,850</span></li>
+                                    <li class="flex justify-between"><span>32ページ</span><span
+                                            class="font-bold text-gray-900">¥5,370</span></li>
+                                    <li class="flex justify-between"><span>40ページ</span><span
+                                            class="font-bold text-gray-900">¥5,890</span></li>
+                                    <li class="flex justify-between"><span>48ページ</span><span
+                                            class="font-bold text-gray-900">¥6,410</span></li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details class="group/size bg-gray-50 rounded border border-gray-100 overflow-hidden">
+                            <summary
+                                class="flex justify-between items-center p-3 font-bold text-gray-700 cursor-pointer hover:bg-gray-100 transition">
+                                <span>130×200mm</span>
+                                <span class="transition group-open/size:rotate-180 text-xs text-gray-400">▼</span>
+                            </summary>
+                            <div class="p-3 border-t border-gray-100 bg-white">
+                                <ul class="space-y-2 text-gray-600">
+                                    <li class="flex justify-between"><span>16ページ</span><span
+                                            class="font-bold text-gray-900">¥3,580</span></li>
+                                    <li class="flex justify-between"><span>24ページ</span><span
+                                            class="font-bold text-gray-900">¥4,040</span></li>
+                                    <li class="flex justify-between"><span>32ページ</span><span
+                                            class="font-bold text-gray-900">¥4,500</span></li>
+                                    <li class="flex justify-between"><span>40ページ</span><span
+                                            class="font-bold text-gray-900">¥4,960</span></li>
+                                    <li class="flex justify-between"><span>48ページ</span><span
+                                            class="font-bold text-gray-900">¥5,420</span></li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details class="group/size bg-gray-50 rounded border border-gray-100 overflow-hidden">
+                            <summary
+                                class="flex justify-between items-center p-3 font-bold text-gray-700 cursor-pointer hover:bg-gray-100 transition">
+                                <span>205×145mm</span>
+                                <span class="transition group-open/size:rotate-180 text-xs text-gray-400">▼</span>
+                            </summary>
+                            <div class="p-3 border-t border-gray-100 bg-white">
+                                <ul class="space-y-2 text-gray-600">
+                                    <li class="flex justify-between"><span>16ページ</span><span
+                                            class="font-bold text-gray-900">¥4,160</span></li>
+                                    <li class="flex justify-between"><span>24ページ</span><span
+                                            class="font-bold text-gray-900">¥4,620</span></li>
+                                    <li class="flex justify-between"><span>32ページ</span><span
+                                            class="font-bold text-gray-900">¥5,080</span></li>
+                                    <li class="flex justify-between"><span>40ページ</span><span
+                                            class="font-bold text-gray-900">¥5,540</span></li>
+                                    <li class="flex justify-between"><span>48ページ</span><span
+                                            class="font-bold text-gray-900">¥6,000</span></li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details class="group/size bg-gray-50 rounded border border-gray-100 overflow-hidden">
+                            <summary
+                                class="flex justify-between items-center p-3 font-bold text-gray-700 cursor-pointer hover:bg-gray-100 transition">
+                                <span>250×176mm</span>
+                                <span class="transition group-open/size:rotate-180 text-xs text-gray-400">▼</span>
+                            </summary>
+                            <div class="p-3 border-t border-gray-100 bg-white">
+                                <ul class="space-y-2 text-gray-600">
+                                    <li class="flex justify-between"><span>16ページ</span><span
+                                            class="font-bold text-gray-900">¥5,140</span></li>
+                                    <li class="flex justify-between"><span>24ページ</span><span
+                                            class="font-bold text-gray-900">¥5,660</span></li>
+                                    <li class="flex justify-between"><span>32ページ</span><span
+                                            class="font-bold text-gray-900">¥6,180</span></li>
+                                    <li class="flex justify-between"><span>40ページ</span><span
+                                            class="font-bold text-gray-900">¥6,700</span></li>
+                                    <li class="flex justify-between"><span>48ページ</span><span
+                                            class="font-bold text-gray-900">¥7,220</span></li>
+                                </ul>
+                            </div>
+                        </details>
+                </div>
+                </details>
+
+                <details class="group bg-white rounded shadow-sm border border-gray-100 mb-4 overflow-hidden">
+                    <summary
+                        class="flex justify-between items-center p-4 font-bold text-sm text-gray-800 cursor-pointer bg-gray-100 hover:bg-gray-200 transition">
+                        <span>リングタイプ</span>
+                        <span class="transition group-open:rotate-180">▼</span>
+                    </summary>
+                    <div class="p-4 border-t border-gray-100 text-sm space-y-3">
+                        <details class="group/size bg-gray-50 rounded border border-gray-100 overflow-hidden">
+                            <summary
+                                class="flex justify-between items-center p-3 font-bold text-gray-700 cursor-pointer hover:bg-gray-100 transition">
+                                <span>152×152mm</span>
+                                <span class="transition group-open/size:rotate-180 text-xs text-gray-400">▼</span>
+                            </summary>
+                            <div class="p-3 border-t border-gray-100 bg-white">
+                                <ul class="space-y-2 text-gray-600">
+                                    <li class="flex justify-between"><span>15ページ</span><span
+                                            class="font-bold text-gray-900">¥3,280</span></li>
+                                    <li class="flex justify-between"><span>20ページ</span><span
+                                            class="font-bold text-gray-900">¥3,780</span></li>
+                                    <li class="flex justify-between"><span>25ページ</span><span
+                                            class="font-bold text-gray-900">¥4,280</span></li>
+                                    <li class="flex justify-between"><span>30ページ</span><span
+                                            class="font-bold text-gray-900">¥4,780</span></li>
+                                    <li class="flex justify-between"><span>35ページ</span><span
+                                            class="font-bold text-gray-900">¥5,280</span></li>
+                                </ul>
+                            </div>
+                        </details>
+                        <details class="group/size bg-gray-50 rounded border border-gray-100 overflow-hidden">
+                            <summary
+                                class="flex justify-between items-center p-3 font-bold text-gray-700 cursor-pointer hover:bg-gray-100 transition">
+                                <span>210×152mm</span>
+                                <span class="transition group-open/size:rotate-180 text-xs text-gray-400">▼</span>
+                            </summary>
+                            <div class="p-3 border-t border-gray-100 bg-white">
+                                <ul class="space-y-2 text-gray-600">
+                                    <li class="flex justify-between"><span>15ページ</span><span
+                                            class="font-bold text-gray-900">¥3,920</span></li>
+                                    <li class="flex justify-between"><span>20ページ</span><span
+                                            class="font-bold text-gray-900">¥4,470</span></li>
+                                    <li class="flex justify-between"><span>25ページ</span><span
+                                            class="font-bold text-gray-900">¥5,020</span></li>
+                                    <li class="flex justify-between"><span>30ページ</span><span
+                                            class="font-bold text-gray-900">¥5,570</span></li>
+                                    <li class="flex justify-between"><span>35ページ</span><span
+                                            class="font-bold text-gray-900">¥6,120</span></li>
+                                </ul>
+                            </div>
+                        </details>
+                    </div>
+                </details>
+            </div>
+
+            <!-- DIGITAL -->
+            <div class="lg:col-span-1">
+                <h4
+                    class="font-bold border-b-2 border-gray-800 pb-2 mb-6 text-gray-800 flex items-center justify-between">
+                    <div>
+                        <span class="bg-gray-800 text-white text-xs px-2 py-1 mr-2 rounded">DIGITAL</span>
+                        デジタルアイテム
+                    </div>
+                </h4>
+                <ul class="space-y-4 text-sm text-gray-700">
+                    <li class="bg-white p-4 rounded shadow-sm">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-bold text-gray-800">AIによるイラスト生成</span>
+                            <span class="font-bold text-gray-900">¥2,000</span>
+                        </div>
+                        <p class="text-xs text-gray-500 leading-relaxed pt-2 border-t border-gray-100">
+                            ※生成したイラストをフォトブックやプリントアイテムにする場合は、<span
+                                class="text-gray-700 font-bold">2,000円＋各オプション料金</span>となります。
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-24 px-4 bg-white">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-light tracking-widest en-font mb-2 text-gray-800">Q&A</h2>
+                <p class="text-sm text-gray-500 tracking-widest">よくあるご質問</p>
+            </div>
+
+            <div class="space-y-4">
+                <details class="group bg-gray-50 p-6 rounded border border-gray-100">
+                    <summary
+                        class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-800">
+                        <span>Q. キャンセルや日程の延期について教えてください。</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                                width="24">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <p class="text-sm text-gray-600 mt-4 leading-relaxed group-open:animate-fadeIn">
+                        A. 体調不良や悪天候（雨天など）で撮影が難しい場合は、<span
+                            class="font-bold text-gray-800">無料で別日への「延期」</span>として対応させていただきます。<br>
+                        ただし、お客様のご都合により完全に「キャンセル」される場合は、事前にスケジュール枠を確保している関係上、<span
+                            class="font-bold text-red-500">ご予約料金の20%をキャンセル料</span>として申し受けております。あらかじめご了承ください。
+                    </p>
+                </details>
+
+                <details class="group bg-gray-50 p-6 rounded border border-gray-100">
+                    <summary
+                        class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-800">
+                        <span>Q. 撮影場所は自由に指定できますか？</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                                width="24">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <p class="text-sm text-gray-600 mt-4 leading-relaxed group-open:animate-fadeIn">
+                        A. はい！おふたりの思い出の場所や公園など、お好きなロケーションをご指定いただけます。なお、撮影許可が必要な場所に関しては、お客様ご自身での申請をお願いしております。
+                    </p>
+                </details>
+                <details class="group bg-gray-50 p-6 rounded border border-gray-100">
+                    <summary
+                        class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-800">
+                        <span>Q. 納品までどのくらいかかりますか？</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                                width="24">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <p class="text-sm text-gray-600 mt-4 leading-relaxed group-open:animate-fadeIn">
+                        A.
+                        SNSシェア用の動画等は可能な限り「最短翌日」にお渡しします。<br>全データのレタッチ等は、通常1週間〜2週間（最大3週間）ほどお時間を頂いております。基本的には1週間以内でのスピード納品を目指しております！
+                    </p>
+                </details>
+                <details class="group bg-gray-50 p-6 rounded border border-gray-100">
+                    <summary
+                        class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-800">
+                        <span>Q. ヘアメイクや衣装のレンタルはありますか？</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                                width="24">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <p class="text-sm text-gray-600 mt-4 leading-relaxed group-open:animate-fadeIn">
+                        A.
+                        立川周辺での撮影に限り、ヘアメイク・着付けが可能なアーティストのご紹介が可能です（※ご予約状況によるため、なるべくお早めにご相談ください）。<br>なお、ドレスショップのご紹介・衣装の貸し出し等は実施しておりませんので、あらかじめお客様ご自身での手配をお願いいたします。
+                    </p>
+                </details>
+                <details class="group bg-gray-50 p-6 rounded border border-gray-100">
+                    <summary
+                        class="flex justify-between items-center font-medium cursor-pointer list-none text-gray-800">
+                        <span>Q. 対応エリア・出張費について教えてください。</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 24 24"
+                                width="24">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <p class="text-sm text-gray-600 mt-4 leading-relaxed group-open:animate-fadeIn">
+                        A. どこへでも出張撮影にお伺いいたします！<br>
+                        なお、交通費につきましては「立川駅」または「武蔵砂川駅」からの往復交通費が1,000円を超える場合、その超過分を別途頂戴しております。あらかじめご了承くださいませ。
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reserve -->
+    <section id="reserve" class="py-24 px-4 bg-gray-800 text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-light tracking-widest en-font mb-2">RESERVE</h2>
+            <p class="text-sm text-gray-400 tracking-widest mb-12">ご予約はこちら</p>
+
+            <form id="reservationForm"
+                class="bg-white text-gray-800 p-6 md:p-10 rounded-2xl shadow-xl text-left max-w-2xl mx-auto mt-10">
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-bold mb-2">お名前 <span
+                                class="text-red-500 text-xs font-normal">必須</span></label>
+                        <input type="text" name="name" required
+                            class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition"
+                            placeholder="山田 太郎">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold mb-2">メールアドレス <span
+                                    class="text-red-500 text-xs font-normal">必須</span></label>
+                            <input type="email" name="email" required
+                                class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition"
+                                placeholder="example@email.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2">電話番号 <span
+                                    class="text-red-500 text-xs font-normal">必須</span></label>
+                            <input type="tel" name="phone" required
+                                class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition"
+                                placeholder="090-1234-5678">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-2">ご希望のプラン <span
+                                class="text-red-500 text-xs font-normal">必須</span></label>
+                        <select name="plan" required
+                            class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition text-gray-700">
+                            <option value="Family">ファミリー・カップル撮影</option>
+                            <option value="Birthday">バースデー・ハーフバースデー（ご自宅・出張など）</option>
+                            <option value="Events">行事ごと（お宮参り・入園・入学・卒業など）</option>
+                            <option value="Shichigosan">七五三撮影</option>
+                            <option value="Promotion">プロモーション・法人・サロン様</option>
+                            <option value="Other">その他 / まずは相談してから決めたい</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-2">撮影ロケーション（スポット） <span
+                                class="text-red-500 text-xs font-normal">必須</span></label>
+                        <input type="text" name="location" required
+                            class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition"
+                            placeholder="立川昭和記念公園、ご自宅など">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold mb-2">撮影希望日 <span
+                                    class="text-red-500 text-xs font-normal">必須</span></label>
+                            <input type="date" id="reserveDate" name="date" required
+                                class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition text-gray-700">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold mb-2">希望開始時間 <span
+                                    class="text-red-500 text-xs font-normal">必須</span></label>
+                            <select id="reserveTime" name="time" required disabled
+                                class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition text-gray-700 disabled:opacity-50">
+                                <option value="">日付をご選択ください</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2 mt-[-10px]">
+                            <p class="text-xs text-gray-400">※ご希望に添えない場合もございます。第二・第三候補がある場合は下部の「ご要望など」欄にご記入ください。</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-2">その他・ご要望など</label>
+                        <textarea name="notes" rows="4"
+                            class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition inline-block align-top"
+                            placeholder="ご質問や、撮影のイメージ、第二・第三希望の日時などがありましたらご記入ください。"></textarea>
+                    </div>
+
+                    <div class="pt-6 text-center">
+                        <!-- GASなどのバックエンドと連携するため、今は一旦 type="button" ではなく Submit で組んでおく -->
+                        <button type="submit"
+                            class="w-full md:w-auto inline-block bg-gray-900 text-white px-16 py-4 rounded-full hover:bg-gray-800 transition shadow-lg font-bold tracking-widest text-base">
+                            予約を申し込む
+                        </button>
+                    </div>
+                </div>
+                <p class="text-xs text-center text-gray-400 mt-6">※送信後、通常24時間以内に折り返しご連絡いたします。</p>
+            </form>
+
+            <div class="mt-16 text-sm text-gray-500">
+                <a href="https://www.instagram.com/daiki_photo7?igsh=MTN5bW96NGdoajM3aQ%3D%3D&utm_source=qr"
+                    target="_blank" rel="noopener noreferrer" class="hover:text-white transition mx-2">Instagram</a> |
+                <a href="https://lin.ee/yvDNcif" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-white transition mx-2">公式LINE</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-500 text-center py-8">
+        <p class="text-xs tracking-widest en-font">&copy; 2026 Attimo Focus. All Rights Reserved.</p>
+    </footer>
+
+    <!-- 予約フォーム連携用スクリプト -->
+    <script>
+        // 【重要】GASでデプロイしたWebアプリケーションのURLをここに貼り付けてください
+        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycby3ZQfEx88vKAPfheyt_YY-2Btq9ufc20Ofl9R6W0eAjzt_Qh5MQwXH1WpyfJx1ionTpQ/exec";
+
+        const dateInput = document.getElementById('reserveDate');
+        const timeSelect = document.getElementById('reserveTime');
+        const form = document.getElementById('reservationForm');
+
+        if (dateInput && timeSelect) {
+            // 今日の日付を最小値に設定（タイムゾーンのズレを補正）
+            const d = new Date();
+            d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+            dateInput.min = d.toISOString().split('T')[0];
+
+            dateInput.addEventListener('change', function () {
+                const selectedDate = this.value;
+                const ts = new Date();
+                ts.setMinutes(ts.getMinutes() - ts.getTimezoneOffset());
+                const todayStr = ts.toISOString().split('T')[0];
+
+                if (selectedDate && selectedDate < todayStr) {
+                    alert('過去の日付はご予約いただけません。');
+                    this.value = '';
+                    timeSelect.innerHTML = '<option value="">日付をご選択ください</option>';
+                    timeSelect.disabled = true;
+                    return;
+                }
+
+                if (!selectedDate) {
+                    timeSelect.innerHTML = '<option value="">日付をご選択ください</option>';
+                    timeSelect.disabled = true;
+                    return;
+                }
+
+                timeSelect.innerHTML = '<option value="">空き状況を確認中...</option>';
+                timeSelect.disabled = true;
+
+                form.action = GAS_WEB_APP_URL;
+                form.method = "POST";
+
+                // JSONPによるCORS回避リクエストを作成
+                const script = document.createElement('script');
+                const callbackName = 'jsonpCallback_' + Math.round(100000 * Math.random());
+
+                window[callbackName] = function (slots) {
+                    timeSelect.innerHTML = '<option value="">時間を選択してください</option>';
+                    if (slots && slots.length > 0) {
+                        slots.forEach(time => {
+                            const option = document.createElement('option');
+                            option.value = time;
+                            option.textContent = time;
+                            timeSelect.appendChild(option);
+                        });
+                    } else {
+                        timeSelect.innerHTML = '<option value="">この日はすべて埋まっています</option>';
+                    }
+                    timeSelect.disabled = false;
+                    delete window[callbackName];
+                    document.body.removeChild(script);
+                };
+
+                script.src = `${GAS_WEB_APP_URL}?date=${selectedDate}&callback=${callbackName}`;
+                script.onerror = function () {
+                    console.error('Error fetching available slots.');
+                    timeSelect.innerHTML = '<option value="">エラーが発生しました</option>';
+                    delete window[callbackName];
+                    document.body.removeChild(script);
+                };
+
+                document.body.appendChild(script);
+            });
+        }
+    </script>
+</body>
+
+</html>
