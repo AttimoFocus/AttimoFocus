@@ -1067,8 +1067,11 @@
                     <div>
                         <label class="block text-sm font-bold mb-2">ご希望のプラン <span
                                 class="text-red-500 text-xs font-normal">必須</span></label>
-                        <select name="plan" required
+                        <select id="reservePlan" name="plan" required
                             class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition text-gray-700">
+                            <option value="">プランを選択してください</option>
+                            <option value="Sakura_Photo">【4/10まで限定】桜撮影（写真10カット 2,000円）</option>
+                            <option value="Sakura_Both">【4/10まで限定】桜撮影（写真＋ショート動画 3,500円）</option>
                             <option value="Family">ファミリー・カップル撮影</option>
                             <option value="Birthday">バースデー・ハーフバースデー（ご自宅・出張など）</option>
                             <option value="Events">行事ごと（お宮参り・入園・入学・卒業など）</option>
@@ -1144,72 +1147,81 @@
         const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwFxLUI9dA3PjR1F77rm0q10gl2m1DhfBBvqoXXktchrQJ2Y1-ZSiusCJl1l7nAOCINPw/exec";
 
         const dateInput = document.getElementById('reserveDate');
+        const planSelect = document.getElementById('reservePlan');
         const timeSelect = document.getElementById('reserveTime');
         const form = document.getElementById('reservationForm');
 
-        if (dateInput && timeSelect) {
-            // 今日の日付を最小値に設定（タイムゾーンのズレを補正）
-            const d = new Date();
-            d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
-            dateInput.min = d.toISOString().split('T')[0];
+        function fetchAvailableSlots() {
+            const selectedDate = dateInput.value;
+            const selectedPlan = planSelect ? planSelect.value : "";
+            const ts = new Date();
+            ts.setMinutes(ts.getMinutes() - ts.getTimezoneOffset());
+            const todayStr = ts.toISOString().split('T')[0];
 
-            dateInput.addEventListener('change', function () {
-                const selectedDate = this.value;
-                const ts = new Date();
-                ts.setMinutes(ts.getMinutes() - ts.getTimezoneOffset());
-                const todayStr = ts.toISOString().split('T')[0];
-
-                if (selectedDate && selectedDate < todayStr) {
-                    alert('過去の日付はご予約いただけません。');
-                    this.value = '';
-                    timeSelect.innerHTML = '<option value="">日付をご選択ください</option>';
-                    timeSelect.disabled = true;
-                    return;
-                }
-
-                if (!selectedDate) {
-                    timeSelect.innerHTML = '<option value="">日付をご選択ください</option>';
-                    timeSelect.disabled = true;
-                    return;
-                }
-
-                timeSelect.innerHTML = '<option value="">空き状況を確認中...</option>';
+            if (selectedDate && selectedDate < todayStr) {
+                alert('過去の日付はご予約いただけません。');
+                dateInput.value = '';
+                timeSelect.innerHTML = '<option value="">日付をご選択ください</option>';
                 timeSelect.disabled = true;
+                return;
+            }
 
-                form.action = GAS_WEB_APP_URL;
-                form.method = "POST";
+            if (!selectedDate || !selectedPlan) {
+                timeSelect.innerHTML = '<option value="">日付とプランをご選択ください</option>';
+                timeSelect.disabled = true;
+                return;
+            }
 
-                // JSONPによるCORS回避リクエストを作成
-                const script = document.createElement('script');
-                const callbackName = 'jsonpCallback_' + Math.round(100000 * Math.random());
+            timeSelect.innerHTML = '<option value="">空き状況を確認中...</option>';
+            timeSelect.disabled = true;
 
-                window[callbackName] = function (slots) {
-                    timeSelect.innerHTML = '<option value="">時間を選択してください</option>';
-                    if (slots && slots.length > 0) {
+            form.action = GAS_WEB_APP_URL;
+            form.method = "POST";
+
+            // JSONPによるCORS回避リクエストを作成
+            const script = document.createElement('script');
+            const callbackName = 'jsonpCallback_' + Math.round(100000 * Math.random());
+
+            window[callbackName] = function (slots) {
+                timeSelect.innerHTML = '<option value="">時間を選択してください</option>';
+                if (slots && slots.length > 0) {
+                    if (slots[0].includes("※")) {
+                        timeSelect.innerHTML = '<option value="">' + slots[0] + '</option>';
+                    } else {
                         slots.forEach(time => {
                             const option = document.createElement('option');
                             option.value = time;
                             option.textContent = time;
                             timeSelect.appendChild(option);
                         });
-                    } else {
-                        timeSelect.innerHTML = '<option value="">この日はすべて埋まっています</option>';
+                        timeSelect.disabled = false;
                     }
-                    timeSelect.disabled = false;
-                    delete window[callbackName];
-                    document.body.removeChild(script);
-                };
+                } else {
+                    timeSelect.innerHTML = '<option value="">この日はすべて埋まっています</option>';
+                }
+                delete window[callbackName];
+                document.body.removeChild(script);
+            };
 
-                script.src = `${GAS_WEB_APP_URL}?date=${selectedDate}&callback=${callbackName}`;
-                script.onerror = function () {
-                    console.error('Error fetching available slots.');
-                    timeSelect.innerHTML = '<option value="">エラーが発生しました</option>';
-                    delete window[callbackName];
-                    document.body.removeChild(script);
-                };
+            script.src = `${GAS_WEB_APP_URL}?date=${selectedDate}&plan=${selectedPlan}&callback=${callbackName}`;
+            script.onerror = function () {
+                console.error('Error fetching available slots.');
+                timeSelect.innerHTML = '<option value="">エラーが発生しました</option>';
+                delete window[callbackName];
+                document.body.removeChild(script);
+            };
 
-                document.body.appendChild(script);
-            });
+            document.body.appendChild(script);
+        }
+
+        if (dateInput && timeSelect && planSelect) {
+            // 今日の日付を最小値に設定
+            const d = new Date();
+            d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+            dateInput.min = d.toISOString().split('T')[0];
+
+            dateInput.addEventListener('change', fetchAvailableSlots);
+            planSelect.addEventListener('change', fetchAvailableSlots);
         }
     </script>
 </body>

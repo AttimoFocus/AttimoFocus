@@ -17,10 +17,21 @@ function testAuth() {
 // 【新機能】日付を指定されたら、その日の「埋まっていない空き時間」をリストにして返す機能
 function doGet(e) {
   let requestDate = e.parameter.date;
+  let requestPlan = e.parameter.plan || "";
 
   if (!requestDate) {
     return ContentService.createTextOutput(JSON.stringify([]))
       .setMimeType(ContentService.MimeType.JSON);
+  }
+
+  let isSakura = requestPlan.includes("Sakura");
+  if (isSakura) {
+    let reqDateObj = new Date(requestDate + 'T00:00:00+09:00');
+    let deadlineDate = new Date('2026-04-10T23:59:59+09:00');
+    if (reqDateObj > deadlineDate) {
+      return ContentService.createTextOutput(JSON.stringify(["※桜プランは4月10日までの限定です"]))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
   }
 
   let cal = CalendarApp.getCalendarById(CALENDAR_ID);
@@ -41,14 +52,19 @@ function doGet(e) {
 
   let availableSlots = [];
 
-  // 7:00 から 18:00 まで、30分枠(30分刻み)でチェック
-  for (let m = START_HOUR * 60; m <= END_HOUR * 60; m += 30) {
+  let durationMin = isSakura ? 15 : EVENT_DURATION_MINUTES;
+  let paddingMin = isSakura ? 0 : PADDING_MINUTES;
+  let intervalMin = isSakura ? 15 : 30;
+
+  // 7:00 から 18:00 まで計算
+  for (let m = START_HOUR * 60; m <= END_HOUR * 60; m += intervalMin) {
     let hh = String(Math.floor(m / 60)).padStart(2, '0');
     let mm = String(m % 60).padStart(2, '0');
     let slotStart = new Date(requestDate + 'T' + hh + ':' + mm + ':00+09:00');
-    // この枠に予約を入れた場合に必要な「拘束時間」＝前1時間〜後1時間の合計3時間
-    let requiredStart = new Date(slotStart.getTime() - PADDING_MINUTES * 60 * 1000);
-    let requiredEnd = new Date(slotStart.getTime() + (EVENT_DURATION_MINUTES + PADDING_MINUTES) * 60 * 1000);
+
+    // この枠に予約を入れた場合に必要な「拘束時間」
+    let requiredStart = new Date(slotStart.getTime() - paddingMin * 60 * 1000);
+    let requiredEnd = new Date(slotStart.getTime() + (durationMin + paddingMin) * 60 * 1000);
 
     let isBooked = false;
 
@@ -96,12 +112,16 @@ function doPost(e) {
   let notes = e.parameter.notes || "";
   let lineName = e.parameter.lineName || "未入力";
 
+  let isSakura = plan.includes("Sakura");
+  let durationMin = isSakura ? 15 : EVENT_DURATION_MINUTES;
+  let paddingMin = isSakura ? 0 : PADDING_MINUTES;
+
   let startTime = new Date(date + 'T' + time + ':00+09:00');
-  let endTime = new Date(startTime.getTime() + (EVENT_DURATION_MINUTES * 60 * 1000));
+  let endTime = new Date(startTime.getTime() + (durationMin * 60 * 1000));
 
   // 今すぐ予約を入れた場合に必要となる「前後の拘束時間」を含めた範囲で再チェック
-  let requiredStart = new Date(startTime.getTime() - PADDING_MINUTES * 60 * 1000);
-  let requiredEnd = new Date(startTime.getTime() + (EVENT_DURATION_MINUTES + PADDING_MINUTES) * 60 * 1000);
+  let requiredStart = new Date(startTime.getTime() - paddingMin * 60 * 1000);
+  let requiredEnd = new Date(startTime.getTime() + (durationMin + paddingMin) * 60 * 1000);
 
   let cal = CalendarApp.getCalendarById(CALENDAR_ID);
   let calPrivate = CalendarApp.getCalendarById(PRIVATE_CALENDAR_ID);
