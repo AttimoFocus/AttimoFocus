@@ -1031,11 +1031,20 @@
                 class="bg-white text-gray-800 p-6 md:p-10 rounded-2xl shadow-xl text-left max-w-2xl mx-auto mt-10">
                 <div class="space-y-6">
                     <div>
-                        <label class="block text-sm font-bold mb-2">お名前 <span
+                        <label class="block text-sm font-bold mb-2">お名前（本名） <span
                                 class="text-red-500 text-xs font-normal">必須</span></label>
                         <input type="text" name="name" required
                             class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition"
                             placeholder="山田 太郎">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold mb-2">LINEアカウント名（表示名） <span
+                                class="text-red-500 text-xs font-normal">必須</span></label>
+                        <p class="text-xs text-gray-500 mb-2">※ご予約者様を正確にお繋ぎするため、実際にご連絡いただくLINEの登録名をお書きください。</p>
+                        <input type="text" name="lineName" required
+                            class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition"
+                            placeholder="Daiki">
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
