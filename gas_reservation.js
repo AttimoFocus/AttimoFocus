@@ -94,6 +94,7 @@ function doPost(e) {
   let date = e.parameter.date || "";
   let time = e.parameter.time || "";
   let notes = e.parameter.notes || "";
+  let lineName = e.parameter.lineName || "未入力";
 
   let startTime = new Date(date + 'T' + time + ':00+09:00');
   let endTime = new Date(startTime.getTime() + (EVENT_DURATION_MINUTES * 60 * 1000));
@@ -114,19 +115,20 @@ function doPost(e) {
     return HtmlService.createHtmlOutput('<div style="font-family:sans-serif; text-align:center; padding: 50px;"><b>申し訳ありません。</b><br><br>その時間は直前で別の予約が埋まってしまいました。<br><br><button onclick="history.back()" style="padding: 10px 20px; background: #333; color: #fff; text-decoration: none; border-radius: 5px; border: none; cursor:pointer;">前の画面に戻る</button></div>');
   } else {
     // カレンダーに予定を作成
-    let eventDesc = "プラン: " + plan + "\n場所: " + location + "\n電話番号: " + phone + "\nメール: " + email + "\n備考: " + notes;
+    let eventDesc = "プラン: " + plan + "\n場所: " + location + "\nLINE名: " + lineName + "\n電話番号: " + phone + "\nメール: " + email + "\n備考: " + notes;
     cal.createEvent(name + '様撮影：' + plan, startTime, endTime, {
       description: eventDesc,
       location: location
     });
 
-    // スプレッドシートへ記録
+    // スプレッドシートへ記録 (LINEアカウント名は一番最後に追加)
     let sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    sheet.appendRow([new Date(), name, email, phone, plan, location, date, time, notes]);
+    sheet.appendRow([new Date(), name, email, phone, plan, location, date, time, notes, lineName]);
 
     // LINEへのリダイレクトURLを作成
     let message = "【ご予約のお申し込み】\n"
       + "■お名前：" + name + " 様\n"
+      + "■LINE名：" + lineName + "\n"
       + "■希望日：" + date + "\n"
       + "■開始時間：" + time + "\n"
       + "■プラン：" + plan + "\n"
@@ -139,13 +141,33 @@ function doPost(e) {
     let encodedMessage = encodeURIComponent(message);
     let lineUrl = "https://line.me/R/oaMessage/@237ixiyp/?" + encodedMessage;
 
-    return HtmlService.createHtmlOutput(
-      '<div style="font-family:sans-serif; text-align:center; padding: 50px; line-height: 1.8;">'
-      + '<b>ご予約処理が完了しました！</b><br><br>'
-      + '引き続き、<b>公式LINEを起動</b>してメッセージを送信してください。<br><br>'
-      + '<a href="' + lineUrl + '" style="display:inline-block; padding: 15px 30px; background: #06C755; color: #fff; text-decoration: none; border-radius: 50px; font-weight: bold;">LINEアプリを起動する</a>'
-      + '</div>'
-      + '<script>setTimeout(function(){ window.top.location.href = "' + lineUrl + '"; }, 1500);</script>'
-    );
+    let htmlTemplate = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ご予約受付</title>
+  <style>
+    body { font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif; background-color: #f8f7f5; margin: 0; padding: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+    .container { background: #fff; padding: 40px 24px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); max-width: 400px; width: 90%; text-align: center; border: 1px solid #eee; }
+    h1 { font-size: 22px; color: #333; margin-bottom: 24px; letter-spacing: 1px; }
+    .highlight { display: inline-block; background: #f0fdf4; color: #166534; padding: 16px 24px; border-radius: 8px; font-weight: bold; margin-bottom: 24px; font-size: 15px; line-height: 1.6; border: 1px solid #bbf7d0; width: 85%; }
+    p { font-size: 14px; color: #555; line-height: 1.7; margin-bottom: 28px; }
+    .btn { display: block; width: 100%; box-sizing: border-box; padding: 16px 0; background: #06C755; color: #fff; text-decoration: none; border-radius: 50px; font-weight: bold; font-size: 16px; box-shadow: 0 4px 12px rgba(6, 199, 85, 0.2); transition: 0.3s; }
+    .warning { font-size: 12px; color: #ef4444; margin-top: 16px; font-weight: bold; margin-bottom: 0;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>仮予約を受け付けました！</h1>
+    <div class="highlight">${date} ${time}〜<br>${plan}</div>
+    <p><b>※ まだ予約は確定しておりません ※</b><br><br>引き続き、公式LINEを起動して<br><b>自動入力されたメッセージを送信</b>してください。<br>当方からのご返信をもって【予約確定】となります。</p>
+    <a href="${lineUrl}" target="_top" class="btn">公式LINEを開いて送信する</a>
+    <p class="warning">※必ず上のボタンをタップしてLINEを起動してください</p>
+  </div>
+</body>
+</html>`;
+
+    return HtmlService.createHtmlOutput(htmlTemplate);
   }
 }
