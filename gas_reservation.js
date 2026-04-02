@@ -199,6 +199,7 @@ function doPost(e) {
       + "■電話番号：" + phone + "\n"
       + "■メール：" + email + "\n"
       + "■その他ご要望：\n" + (notes ? notes : "特になし") + "\n\n"
+      + (plan.includes("ShowaKinen") ? "【お支払いについて】\nこちらのプランは事前決済をお願いしております。以下のリンクよりお手続きをお願いいたします。\nhttps://buy.stripe.com/8x2fZ962e1CBbuvgxkafS00\n\n" : "")
       + "※こちらのメッセージをそのまま送信してください。\n折り返しご案内差し上げます。";
 
     let encodedMessage = encodeURIComponent(message);
