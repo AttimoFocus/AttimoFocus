@@ -100,6 +100,13 @@ function doGet(e) {
   let intervalMin = requestPlan.includes("Sakura") ? 15 : 30;
 
   for (let m = START_HOUR * 60; m <= END_HOUR * 60; m += intervalMin) {
+    // 昭和記念公園プランの10:00-16:00制限（16:00開始枠は不可）
+    if (requestPlan.includes("ShowaKinen")) {
+      let currentHour = Math.floor(m / 60);
+      if (currentHour < 10 || currentHour >= 16) {
+        continue;
+      }
+    }
     let hh = String(Math.floor(m / 60)).padStart(2, '0');
     let mm = String(m % 60).padStart(2, '0');
     let slotStart = new Date(requestDate + 'T' + hh + ':' + mm + ':00+09:00');
