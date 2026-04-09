@@ -22,7 +22,12 @@ function getPlanSettings(planValue) {
     return { duration: 60, padding: 60, titlePrefix: "【要3時間確保】" };
   }
   
-  // 昭和記念公園プラン（1時間のみの確保）
+  // 昭和記念公園プラン（ライトプラン：15分撮影＋前後それぞれ10分確保 ＝ 計35分枠）
+  if (planValue.includes("ShowaKinen_Light")) {
+    return { duration: 15, padding: 10, titlePrefix: "【要35分確保】" };
+  }
+  
+  // 昭和記念公園プラン（スタンダード：1時間のみの確保）
   if (planValue.includes("ShowaKinen")) {
     return { duration: 60, padding: 0, titlePrefix: "【要1時間確保】" };
   }
@@ -96,8 +101,8 @@ function doGet(e) {
   let durationMin = settings.duration;
   let paddingMin = settings.padding;
   
-  // 桜撮影なら15分間隔、それ以外は30分間隔でチェック
-  let intervalMin = requestPlan.includes("Sakura") ? 15 : 30;
+  // 短時間プラン（桜・ライトプラン）なら15分間隔、それ以外は30分間隔でチェック
+  let intervalMin = (requestPlan.includes("Sakura") || requestPlan.includes("ShowaKinen_Light")) ? 15 : 30;
 
   for (let m = START_HOUR * 60; m <= END_HOUR * 60; m += intervalMin) {
     // 昭和記念公園プランの10:00-16:00制限（16:00開始枠は不可）
