@@ -174,6 +174,31 @@ function doPost(e) {
   let time = e.parameter.time || "";
   let notes = e.parameter.notes || "";
   let lineName = e.parameter.lineName || "未入力";
+  let reservationType = e.parameter.reservationType || "new";
+  let oldDate = e.parameter.oldDate || "";
+  let oldTime = e.parameter.oldTime || "";
+
+  let cal = CalendarApp.getCalendarById(CALENDAR_ID);
+  let calPrivate = CalendarApp.getCalendarById(PRIVATE_CALENDAR_ID);
+
+  // 【予約変更の場合】古い予約を自動で削除する
+  if (reservationType === 'change' && oldDate && oldTime) {
+    let oldStartOfDay = new Date(oldDate + 'T00:00:00+09:00');
+    let oldEndOfDay = new Date(oldDate + 'T23:59:59+09:00');
+    let oldEvents = cal.getEvents(oldStartOfDay, oldEndOfDay);
+
+    for (let i = 0; i < oldEvents.length; i++) {
+      let ev = oldEvents[i];
+      let title = ev.getTitle();
+      let desc = ev.getDescription();
+
+      // 名前が含まれ、かつ説明文の中に「実際の撮影時間: (旧時間)」が含まれているものを探す
+      if (title.indexOf(name) !== -1 && desc.indexOf("【実際の撮影時間: " + oldTime) !== -1) {
+        ev.deleteEvent();
+        break; // 1つ見つけたら終了
+      }
+    }
+  }
 
   let settings = getPlanSettings(plan);
   let durationMin = settings.duration;
@@ -185,9 +210,6 @@ function doPost(e) {
   // 拘束時間（移動時間含め）を計算
   let requiredStart = new Date(startTime.getTime() - paddingMin * 60 * 1000);
   let requiredEnd = new Date(startTime.getTime() + (durationMin + paddingMin) * 60 * 1000);
-
-  let cal = CalendarApp.getCalendarById(CALENDAR_ID);
-  let calPrivate = CalendarApp.getCalendarById(PRIVATE_CALENDAR_ID);
 
   // 母の日プランの時間制限バリデーション（念のため）
   if (plan.indexOf("MothersDay") !== -1) {
@@ -216,11 +238,12 @@ function doPost(e) {
     // スプレッドシート（紐付いている場合）への記録
     try {
       let sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-      sheet.appendRow([new Date(), name, email, phone, plan, location, date, time, notes, lineName]);
+      sheet.appendRow([new Date(), name, email, phone, plan, location, date, time, notes, lineName, reservationType, oldDate, oldTime]);
     } catch (e) { }
 
     // LINEメッセージの生成
-    let message = "【ご予約お申し込み】\n"
+    let message = "【ご予約" + (reservationType === 'change' ? "変更" : "お申し込み") + "】\n"
+      + (reservationType === 'change' ? "※既存の予約を変更し、以下で再予約しました。\n\n" : "")
       + "■お名前：" + name + " 様\n"
       + "■LINE名：" + lineName + "\n"
       + "■希望日：" + date + "\n"
@@ -229,6 +252,7 @@ function doPost(e) {
       + "■ロケーション：" + location + "\n"
       + "■電話番号：" + phone + "\n"
       + "■メール：" + email + "\n"
+      + (reservationType === 'change' ? "■元の予約日：" + oldDate + "\n■元の時間：" + oldTime + "\n" : "")
       + "■その他ご要望：\n" + (notes ? notes : "特になし") + "\n\n"
       + (plan.includes("MothersDay") ? "【ご案内】\n母の日特別撮影会等に関する事前の確認事項は、公式LINE上にてご案内申し上げます。\n\n" : "")
       + "※こちらのメッセージをそのまま送信してください。\n折り返しご案内差し上げます。";

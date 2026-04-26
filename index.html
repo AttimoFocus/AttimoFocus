@@ -1373,15 +1373,26 @@
                     「このプランの一部だけ変更したい」「記載のない撮影をお願いしたい」など、<br class="hidden md:block">
                     ご要望に合わせた柔軟な対応も可能です！まずはお気軽に公式LINEより直接メッセージをお送りください。
                 </p>
-                <a href="https://line.me/R/oaMessage/@237ixiyp/?%E3%81%9D%E3%81%AE%E4%BB%96%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B"
-                    target="_blank" rel="noopener noreferrer"
-                    class="inline-flex items-center text-sm font-bold bg-[#06C755] text-white px-8 py-3 rounded-full hover:bg-[#05b34c] transition shadow-sm">
-                    <svg class="w-4 h-4 mr-1.5" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.122.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.572-3.843 2.572-5.992zm-14.888.889h-2.184v-3.522c0-.348-.282-.631-.631-.631s-.631.283-.631.631v4.153c0 .348.282.631.631.631h2.815c.348 0 .631-.283.631-.631s-.283-.631-.631-.631zm3.837 0h-1.229v-3.522c0-.348-.282-.631-.631-.631s-.631.283-.631.631v3.522c0 .348.282.631.631.631h1.229c.348 0 .631-.283.631-.631s-.283-.631-.631-.631zm3.838-3.522v3.522c0 .348-.282.631-.631.631s-.631-.283-.631-.631v-1.638l-1.574 2.115c-.092.124-.236.197-.39-.197s-.299-.074-.391-.197c-.129-.174-.199-.387-.199-.61v-3.389c0-.348.282-.631.631-.631s.631.283.631.631v1.638l1.574-2.115c.092-.124.236-.197.39-.197s.299.074.391.197c.129.174.199.387.199.61z" />
-                    </svg>
-                    公式LINEで直接相談する
-                </a>
+                <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                    <a href="https://line.me/R/oaMessage/@237ixiyp/?%E3%81%9D%E3%81%AE%E4%BB%96%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B"
+                        target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center text-sm font-bold bg-[#06C755] text-white px-8 py-3 rounded-full hover:bg-[#05b34c] transition shadow-sm w-full md:w-auto justify-center">
+                        <svg class="w-4 h-4 mr-1.5" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.122.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.572-3.843 2.572-5.992zm-14.888.889h-2.184v-3.522c0-.348-.282-.631-.631-.631s-.631.283-.631.631v4.153c0 .348.282.631.631.631h2.815c.348 0 .631-.283.631-.631s-.283-.631-.631-.631zm3.837 0h-1.229v-3.522c0-.348-.282-.631-.631-.631s-.631.283-.631.631v3.522c0 .348.282.631.631.631h1.229c.348 0 .631-.283.631-.631s-.283-.631-.631-.631zm3.838-3.522v3.522c0 .348-.282.631-.631.631s-.631-.283-.631-.631v-1.638l-1.574 2.115c-.092.124-.236.197-.39-.197s-.299-.074-.391-.197c-.129-.174-.199-.387-.199-.61v-3.389c0-.348.282-.631.631-.631s.631.283.631.631v1.638l1.574-2.115c.092-.124.236-.197.39-.197s.299.074.391.197c.129.174.199.387.199.61z" />
+                        </svg>
+                        公式LINEで直接相談する
+                    </a>
+                    <a href="#reserve" id="btn-change-mode"
+                        class="inline-flex items-center text-sm font-bold bg-white text-gray-800 border-2 border-gray-800 px-8 py-3 rounded-full hover:bg-gray-100 transition shadow-sm w-full md:w-auto justify-center">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                            </path>
+                        </svg>
+                        既存の予約を変更する
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -1395,6 +1406,38 @@
             <form id="reservationForm"
                 class="bg-white text-gray-800 p-6 md:p-10 rounded-2xl shadow-xl text-left max-w-2xl mx-auto mt-10">
                 <div class="space-y-6">
+                    <!-- 予約タイプ（新規・変更） -->
+                    <div class="flex gap-4 p-1 bg-gray-100 rounded-lg w-fit mb-8">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="reservationType" value="new" checked class="hidden peer">
+                            <span
+                                class="block px-6 py-2 rounded-md peer-checked:bg-white peer-checked:text-gray-900 peer-checked:shadow-sm text-gray-500 text-sm font-bold transition">新規予約</span>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="reservationType" value="change" class="hidden peer">
+                            <span
+                                class="block px-6 py-2 rounded-md peer-checked:bg-white peer-checked:text-gray-900 peer-checked:shadow-sm text-gray-500 text-sm font-bold transition">予約変更</span>
+                        </label>
+                    </div>
+
+                    <!-- 予約変更時に表示されるフィールド -->
+                    <div id="section-old-reservation"
+                        class="hidden p-4 bg-yellow-50 rounded-lg border border-yellow-100 mb-6">
+                        <p class="text-xs text-yellow-700 font-bold mb-3">元の予約情報を入力してください</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-[11px] font-bold text-yellow-600 mb-1">元の予約日</label>
+                                <input type="date" name="oldDate"
+                                    class="w-full px-3 py-2 bg-white border border-yellow-200 rounded focus:outline-none focus:border-yellow-400 text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-bold text-yellow-600 mb-1">元の開始時間</label>
+                                <input type="time" name="oldTime"
+                                    class="w-full px-3 py-2 bg-white border border-yellow-200 rounded focus:outline-none focus:border-yellow-400 text-sm">
+                            </div>
+                        </div>
+                    </div>
+
                     <div>
                         <label class="block text-sm font-bold mb-2">お名前（本名） <span
                                 class="text-red-500 text-xs font-normal">必須</span></label>
@@ -1483,7 +1526,7 @@
 
                     <div class="pt-6 text-center">
                         <!-- GASなどのバックエンドと連携するため、今は一旦 type="button" ではなく Submit で組んでおく -->
-                        <button type="submit"
+                        <button type="submit" id="submitBtn"
                             class="w-full md:w-auto inline-block bg-gray-900 text-white px-16 py-4 rounded-full hover:bg-gray-800 transition shadow-lg font-bold tracking-widest text-base">
                             予約を申し込む
                         </button>
@@ -1591,6 +1634,45 @@
 
             dateInput.addEventListener('change', fetchAvailableSlots);
             planSelect.addEventListener('change', fetchAvailableSlots);
+        }
+
+        // --- 予約タイプの切り替え制御 ---
+        const reservationTypeInputs = document.querySelectorAll('input[name="reservationType"]');
+        const sectionOldReservation = document.getElementById('section-old-reservation');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnChangeMode = document.getElementById('btn-change-mode');
+
+        function updateFormMode() {
+            const isChange = document.querySelector('input[name="reservationType"]:checked').value === 'change';
+            if (isChange) {
+                sectionOldReservation.classList.remove('hidden');
+                submitBtn.textContent = '予約の変更を申し込む';
+                // 変更時は元の予約日・時間のバリデーションが必要
+                document.querySelector('input[name="oldDate"]').required = true;
+                document.querySelector('input[name="oldTime"]').required = true;
+            } else {
+                sectionOldReservation.classList.add('hidden');
+                submitBtn.textContent = '予約を申し込む';
+                document.querySelector('input[name="oldDate"]').required = false;
+                document.querySelector('input[name="oldTime"]').required = false;
+            }
+        }
+
+        if (reservationTypeInputs.length > 0) {
+            reservationTypeInputs.forEach(input => {
+                input.addEventListener('change', updateFormMode);
+            });
+        }
+
+        // 問い合わせセクションの変更ボタンクリック時
+        if (btnChangeMode) {
+            btnChangeMode.addEventListener('click', (e) => {
+                const changeRadio = document.querySelector('input[name="reservationType"][value="change"]');
+                if (changeRadio) {
+                    changeRadio.checked = true;
+                    updateFormMode();
+                }
+            });
         }
 
         // --- お客様の声スライダー制御 ---
