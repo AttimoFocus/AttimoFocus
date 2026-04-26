@@ -51,7 +51,7 @@ function testAuth() {
  */
 function doGet(e) {
   let requestDate = e.parameter.date;
-  let requestPlan = e.parameter.plan || "";
+  let requestPlan = (e.parameter.plan || "").trim();
 
   if (!requestDate) {
     return ContentService.createTextOutput(JSON.stringify([]))
@@ -82,15 +82,11 @@ function doGet(e) {
   }
 
   if (requestPlan.includes("MothersDay")) {
-    let reqDateObj = new Date(requestDate + 'T00:00:00+09:00');
-    let startDate = new Date('2026-05-01T00:00:00+09:00');
-    let endDate = new Date('2026-05-05T23:59:59+09:00');
-    let specialDate = new Date('2026-04-29T00:00:00+09:00');
+    // 日付文字列 (YYYY-MM-DD) で比較
+    let targetDate = requestDate; // e.g. "2026-04-29"
+    let availableDates = ["2026-04-29", "2026-05-01", "2026-05-02", "2026-05-03", "2026-05-04", "2026-05-05"];
 
-    // 4/29 または 5/1〜5/5 以外はエラー
-    let isAvailableDate = (reqDateObj.getTime() === specialDate.getTime()) || (reqDateObj >= startDate && reqDateObj <= endDate);
-
-    if (!isAvailableDate) {
+    if (availableDates.indexOf(targetDate) === -1) {
       return ContentService.createTextOutput(JSON.stringify(["※母の日特別プランは4/29、5/1〜5/5限定です"]))
         .setMimeType(ContentService.MimeType.JSON);
     }
@@ -120,7 +116,8 @@ function doGet(e) {
 
   for (let m = START_HOUR * 60; m <= END_HOUR * 60; m += intervalMin) {
     // 母の日プランの時間制限（10:00〜16:00）
-    if (requestPlan.includes("MothersDay")) {
+    // planValueまたはrequestPlanにMothersDayが含まれる場合
+    if (requestPlan.indexOf("MothersDay") !== -1) {
       if (m < 10 * 60 || m > 16 * 60) {
         continue;
       }
@@ -171,7 +168,7 @@ function doPost(e) {
   let name = e.parameter.name || "お名前未設定";
   let email = e.parameter.email || "";
   let phone = e.parameter.phone || "";
-  let plan = e.parameter.plan || "";
+  let plan = (e.parameter.plan || "").trim();
   let location = e.parameter.location || "";
   let date = e.parameter.date || "";
   let time = e.parameter.time || "";
@@ -193,7 +190,7 @@ function doPost(e) {
   let calPrivate = CalendarApp.getCalendarById(PRIVATE_CALENDAR_ID);
 
   // 母の日プランの時間制限バリデーション（念のため）
-  if (plan.includes("MothersDay")) {
+  if (plan.indexOf("MothersDay") !== -1) {
     let hh = parseInt(time.split(':')[0]);
     if (hh < 10 || hh > 16) {
       return HtmlService.createHtmlOutput('<div style="font-family:sans-serif; text-align:center; padding: 50px;"><b>エラー</b><br><br>母の日プランは10:00〜16:00の間のみ予約可能です。<br><br><button onclick="history.back()" style="padding: 10px 20px; background: #333; color: #fff; text-decoration: none; border-radius: 5px; border: none; cursor:pointer;">前の画面に戻る</button></div>');
