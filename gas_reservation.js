@@ -85,8 +85,13 @@ function doGet(e) {
     let reqDateObj = new Date(requestDate + 'T00:00:00+09:00');
     let startDate = new Date('2026-05-01T00:00:00+09:00');
     let endDate = new Date('2026-05-05T23:59:59+09:00');
-    if (reqDateObj < startDate || reqDateObj > endDate) {
-      return ContentService.createTextOutput(JSON.stringify(["※母の日特別プランは5/1〜5/5限定です"]))
+    let specialDate = new Date('2026-04-29T00:00:00+09:00');
+
+    // 4/29 または 5/1〜5/5 以外はエラー
+    let isAvailableDate = (reqDateObj.getTime() === specialDate.getTime()) || (reqDateObj >= startDate && reqDateObj <= endDate);
+
+    if (!isAvailableDate) {
+      return ContentService.createTextOutput(JSON.stringify(["※母の日特別プランは4/29、5/1〜5/5限定です"]))
         .setMimeType(ContentService.MimeType.JSON);
     }
   }
