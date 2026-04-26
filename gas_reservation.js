@@ -14,29 +14,25 @@ const PADDING_MINUTES = 60; // 前後の移動・準備時間（前後1時間ず
  * @returns {{duration: number, padding: number, titlePrefix: string}} 
  */
 function getPlanSettings(planValue) {
-  // 出張撮影・行事・ファミリー（前後1時間、合計3時間の確保が必要なプラン）
-  if (planValue.includes("Birthday") || 
-      planValue.includes("Family") || 
-      planValue.includes("Events") || 
-      planValue.includes("Shichigosan")) {
+  // 出張撮影・行事・ファミリー・1歳3回セット（前後1時間、合計3時間の確保が必要なプラン）
+  if (planValue.includes("Birthday") ||
+    planValue.includes("Family") ||
+    planValue.includes("Events") ||
+    planValue.includes("Shichigosan") ||
+    planValue.includes("Tama1Year")) {
     return { duration: 60, padding: 60, titlePrefix: "【要3時間確保】" };
   }
-  
-  // 昭和記念公園プラン（ライトプラン：15分撮影＋前後それぞれ10分確保 ＝ 計35分枠）
-  if (planValue.includes("ShowaKinen_Light")) {
-    return { duration: 15, padding: 10, titlePrefix: "【要35分確保】" };
-  }
-  
-  // 昭和記念公園プラン（スタンダード：1時間のみの確保）
-  if (planValue.includes("ShowaKinen")) {
+
+  // 母の日特別撮影会プレミアムプラン（撮影1時間、パディングなしで計1時間枠）
+  if (planValue.includes("MothersDay")) {
     return { duration: 60, padding: 0, titlePrefix: "【要1時間確保】" };
   }
-  
+
   // 桜撮影プラン（30分のみの確保：15分撮影＋前後7.5分ずつ）
   if (planValue.includes("Sakura")) {
     return { duration: 15, padding: 7.5, titlePrefix: "【要30分確保】" };
   }
-  
+
   // デフォルト（念のため。基本は上記に該当するようにします）
   return { duration: 60, padding: 60, titlePrefix: "【要3時間確保】" };
 }
@@ -62,6 +58,19 @@ function doGet(e) {
       .setMimeType(ContentService.MimeType.JSON);
   }
 
+  // 多摩1歳3回セット撮影プランの直接予約ブロック＆LINE誘導
+  if (requestPlan.includes("Tama1Year")) {
+    const callback = e.parameter.callback;
+    const msg = ["※多摩1歳プランは公式LINEにて日程等のご相談・調整となります"];
+    if (callback) {
+      return ContentService.createTextOutput(callback + '(' + JSON.stringify(msg) + ');')
+        .setMimeType(ContentService.MimeType.JAVASCRIPT);
+    } else {
+      return ContentService.createTextOutput(JSON.stringify(msg))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+  }
+
   // プランごとの期間制限チェック
   if (requestPlan.includes("Sakura")) {
     let reqDateObj = new Date(requestDate + 'T00:00:00+09:00');
@@ -72,12 +81,12 @@ function doGet(e) {
     }
   }
 
-  if (requestPlan.includes("ShowaKinen")) {
+  if (requestPlan.includes("MothersDay")) {
     let reqDateObj = new Date(requestDate + 'T00:00:00+09:00');
-    let startDate = new Date('2026-04-13T00:00:00+09:00');
-    let endDate = new Date('2026-05-13T23:59:59+09:00');
+    let startDate = new Date('2026-05-01T00:00:00+09:00');
+    let endDate = new Date('2026-05-05T23:59:59+09:00');
     if (reqDateObj < startDate || reqDateObj > endDate) {
-      return ContentService.createTextOutput(JSON.stringify(["※昭和記念公園のプランは4/13〜5/13限定です"]))
+      return ContentService.createTextOutput(JSON.stringify(["※母の日特別プランは5/1〜5/5限定です"]))
         .setMimeType(ContentService.MimeType.JSON);
     }
   }
@@ -100,18 +109,18 @@ function doGet(e) {
   let settings = getPlanSettings(requestPlan);
   let durationMin = settings.duration;
   let paddingMin = settings.padding;
-  
-  // 短時間プラン（桜・ライトプラン）なら15分間隔、それ以外は30分間隔でチェック
-  let intervalMin = (requestPlan.includes("Sakura") || requestPlan.includes("ShowaKinen_Light")) ? 15 : 30;
+
+  // 短時間プラン（桜）なら15分間隔、それ以外（母の日含む）は30分間隔でチェック
+  let intervalMin = requestPlan.includes("Sakura") ? 15 : 30;
 
   for (let m = START_HOUR * 60; m <= END_HOUR * 60; m += intervalMin) {
-    // 昭和記念公園プランの10:00-16:00制限（16:00開始枠は不可）
-    if (requestPlan.includes("ShowaKinen")) {
-      let currentHour = Math.floor(m / 60);
-      if (currentHour < 10 || currentHour >= 16) {
+    // 母の日プランの時間制限（10:00〜16:00）
+    if (requestPlan.includes("MothersDay")) {
+      if (m < 10 * 60 || m > 16 * 60) {
         continue;
       }
     }
+
     let hh = String(Math.floor(m / 60)).padStart(2, '0');
     let mm = String(m % 60).padStart(2, '0');
     let slotStart = new Date(requestDate + 'T' + hh + ':' + mm + ':00+09:00');
@@ -178,6 +187,14 @@ function doPost(e) {
   let cal = CalendarApp.getCalendarById(CALENDAR_ID);
   let calPrivate = CalendarApp.getCalendarById(PRIVATE_CALENDAR_ID);
 
+  // 母の日プランの時間制限バリデーション（念のため）
+  if (plan.includes("MothersDay")) {
+    let hh = parseInt(time.split(':')[0]);
+    if (hh < 10 || hh > 16) {
+      return HtmlService.createHtmlOutput('<div style="font-family:sans-serif; text-align:center; padding: 50px;"><b>エラー</b><br><br>母の日プランは10:00〜16:00の間のみ予約可能です。<br><br><button onclick="history.back()" style="padding: 10px 20px; background: #333; color: #fff; text-decoration: none; border-radius: 5px; border: none; cursor:pointer;">前の画面に戻る</button></div>');
+    }
+  }
+
   // 最終チェック：既に埋まっていないか再確認
   let events = cal.getEvents(requiredStart, requiredEnd).concat(calPrivate ? calPrivate.getEvents(requiredStart, requiredEnd) : []);
 
@@ -188,7 +205,7 @@ function doPost(e) {
     let displayEndTime = (paddingMin > 0) ? requiredEnd : endTime;
     let eventDesc = "【実際の撮影時間: " + time + " 〜 " + Utilities.formatDate(endTime, "JST", "HH:mm") + "】\n\n"
       + "プラン: " + plan + "\n場所: " + location + "\nLINE名: " + lineName + "\n電話番号: " + phone + "\nメール: " + email + "\n備考: " + notes;
-    
+
     cal.createEvent(settings.titlePrefix + name + '様撮影：' + plan, requiredStart, displayEndTime, {
       description: eventDesc,
       location: location
@@ -198,7 +215,7 @@ function doPost(e) {
     try {
       let sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
       sheet.appendRow([new Date(), name, email, phone, plan, location, date, time, notes, lineName]);
-    } catch(e) {}
+    } catch (e) { }
 
     // LINEメッセージの生成
     let message = "【ご予約お申し込み】\n"
@@ -211,7 +228,7 @@ function doPost(e) {
       + "■電話番号：" + phone + "\n"
       + "■メール：" + email + "\n"
       + "■その他ご要望：\n" + (notes ? notes : "特になし") + "\n\n"
-      + (plan.includes("ShowaKinen") ? "【お支払いについて】\nこちらのプランは事前決済をお願いしております。以下のリンクよりお手続きをお願いいたします。\nhttps://buy.stripe.com/8x2fZ962e1CBbuvgxkafS00\n\n" : "")
+      + (plan.includes("MothersDay") ? "【ご案内】\n母の日特別撮影会等に関する事前の確認事項は、公式LINE上にてご案内申し上げます。\n\n" : "")
       + "※こちらのメッセージをそのまま送信してください。\n折り返しご案内差し上げます。";
 
     let encodedMessage = encodeURIComponent(message);
