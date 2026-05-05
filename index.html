@@ -314,12 +314,12 @@
                 </div>
 
 
-                <!-- Plan 1 -->
+                <!-- Plan 1 (Combined) -->
                 <div
-                    class="border border-gray-100 rounded-lg p-8 hover:shadow-xl transition-shadow bg-gray-50/50 relative overflow-hidden">
+                    class="border border-gray-100 rounded-lg p-8 hover:shadow-xl transition-shadow bg-gray-50/50 relative overflow-hidden md:col-span-2">
                     <div class="absolute top-0 right-0 bg-gray-800 text-white text-xs px-3 py-1 font-bold">1番人気</div>
-                    <h3 class="text-xl mb-1 mt-2">ハーフバースデー / 出張・自宅撮影等</h3>
-                    <p class="en-font tracking-wider text-sm text-gray-400 mb-6">Half Birthday & Location</p>
+                    <h3 class="text-xl mb-1 mt-2">ファミリー・出張撮影（ハーフバースデー等）</h3>
+                    <p class="en-font tracking-wider text-sm text-gray-400 mb-6">Family & Location</p>
                     <ul class="text-sm text-gray-600 space-y-3 mb-8">
                         <li class="flex items-start">
                             <span class="text-gray-400 mr-2">✓</span>
@@ -335,69 +335,32 @@
                         </li>
                         <li class="flex items-start">
                             <span class="text-gray-400 mr-2">✓</span>
-                            <span>翌日スマホ用動画プレゼント</span>
-                        </li>
-                    </ul>
-                    <div class="space-y-2 border-t border-gray-100 pt-6">
-                        <div class="flex justify-between items-center text-sm">
-                            <span>30カット</span>
-                            <span class="font-bold text-lg text-gray-900">¥16,000 <span
-                                    class="text-[10px] font-normal text-gray-400">(税込)</span></span>
-                        </div>
-                        <div class="flex justify-between items-center text-sm">
-                            <span>50カット</span>
-                            <span class="font-bold text-lg text-gray-900">¥29,000 <span
-                                    class="text-[10px] font-normal text-gray-400">(税込)</span></span>
-                        </div>
-                        <div class="flex justify-between items-center text-sm">
-                            <span class="font-bold text-gray-800">100カット</span>
-                            <span class="font-bold text-xl text-gray-900">¥55,000 <span
-                                    class="text-[10px] font-normal text-gray-400">(税込)</span></span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Plan 2 -->
-                <div class="border border-gray-100 rounded-lg p-8 hover:shadow-xl transition-shadow bg-gray-50/50">
-                    <h3 class="text-xl mb-1 mt-2">ファミリー撮影</h3>
-                    <p class="en-font tracking-wider text-sm text-gray-400 mb-6">Family</p>
-                    <ul class="text-sm text-gray-600 space-y-3 mb-8">
-                        <li class="flex items-start">
-                            <span class="text-gray-400 mr-2">✓</span>
-                            <span>撮影時間：約60分〜90分</span>
+                            <span>屋外（いつものご自宅や公園でのロケ撮影）</span>
                         </li>
                         <li class="flex items-start">
                             <span class="text-gray-400 mr-2">✓</span>
-                            <span>全データレタッチ済み</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-gray-400 mr-2">✓</span>
-                            <span>いつものご自宅や公園でのロケ撮影</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-gray-400 mr-2">✓</span>
-                            <span>雨天などの延期は無料対応</span>
+                            <span>体調不良、雨天などの延期は無料対応。キャンセルの場合のみ20%のキャンセル料</span>
                         </li>
                     </ul>
                     <div class="space-y-2 border-t border-gray-100 pt-6">
                         <div class="flex justify-between items-center text-sm">
                             <span>15カット</span>
-                            <span class="font-bold text-lg text-gray-900">¥8,000 <span
+                            <span class="font-bold text-lg text-gray-900">¥11,000 <span
                                     class="text-[10px] font-normal text-gray-400">(税込)</span></span>
                         </div>
                         <div class="flex justify-between items-center text-sm">
                             <span>30カット</span>
-                            <span class="font-bold text-lg text-gray-900">¥15,000 <span
+                            <span class="font-bold text-lg text-gray-900">¥19,000 <span
                                     class="text-[10px] font-normal text-gray-400">(税込)</span></span>
                         </div>
                         <div class="flex justify-between items-center text-sm">
                             <span>50カット</span>
-                            <span class="font-bold text-lg text-gray-900">¥27,000 <span
+                            <span class="font-bold text-lg text-gray-900">¥33,000 <span
                                     class="text-[10px] font-normal text-gray-400">(税込)</span></span>
                         </div>
                         <div class="flex justify-between items-center text-sm">
                             <span class="font-bold text-gray-800">100カット</span>
-                            <span class="font-bold text-xl text-gray-900">¥51,000 <span
+                            <span class="font-bold text-xl text-gray-900">¥55,000 <span
                                     class="text-[10px] font-normal text-gray-400">(税込)</span></span>
                         </div>
                     </div>
@@ -1472,22 +1435,7 @@
                         </div>
                     </div>
 
-                    <div>
-                        <label class="block text-sm font-bold mb-2">ご希望のプラン <span
-                                class="text-red-500 text-xs font-normal">必須</span></label>
-                        <select id="reservePlan" name="plan" required
-                            class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition text-gray-700">
-                            <option value="">プランを選択してください</option>
-                            <option value="MothersDay">【4/29・5/1〜5/5限定】母の日特別撮影会＆ギフト（10:00〜16:00・¥19,800）</option>
-                            <option value="Tama1Year">多摩エリア等限定 1歳までの3回セット撮影</option>
-                            <option value="Family">ファミリー撮影（15/30/50/100カット）</option>
-                            <option value="Birthday">出張撮影（バースデー・ハーフバースデー等）</option>
-                            <option value="Events">行事ごと（お宮参り・入園・入学・卒業など）</option>
-                            <option value="Shichigosan">七五三撮影</option>
-                            <option value="Promotion">プロモーション・法人・サロン様</option>
-                            <option value="Other">その他 / 相談して決めたい</option>
-                        </select>
-                    </div>
+                    <!-- プラン選択は削除 -->
 
                     <div>
                         <label class="block text-sm font-bold mb-2">撮影ロケーション（スポット） <span
@@ -1559,13 +1507,11 @@
         const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbx9vpx7L6WOaxZv0qzsouBWW2RzuqPnw2C9a5cF_av6tW5f-1d6EfIYLOoMhBUcqZOW/exec";
 
         const dateInput = document.getElementById('reserveDate');
-        const planSelect = document.getElementById('reservePlan');
         const timeSelect = document.getElementById('reserveTime');
         const form = document.getElementById('reservationForm');
 
         function fetchAvailableSlots() {
             const selectedDate = dateInput.value;
-            const selectedPlan = planSelect ? planSelect.value : "";
             const ts = new Date();
             ts.setMinutes(ts.getMinutes() - ts.getTimezoneOffset());
             const todayStr = ts.toISOString().split('T')[0];
@@ -1578,8 +1524,8 @@
                 return;
             }
 
-            if (!selectedDate || !selectedPlan) {
-                timeSelect.innerHTML = '<option value="">日付とプランをご選択ください</option>';
+            if (!selectedDate) {
+                timeSelect.innerHTML = '<option value="">日付をご選択ください</option>';
                 timeSelect.disabled = true;
                 return;
             }
@@ -1615,7 +1561,7 @@
                 document.body.removeChild(script);
             };
 
-            script.src = `${GAS_WEB_APP_URL}?date=${selectedDate}&plan=${selectedPlan}&callback=${callbackName}`;
+            script.src = `${GAS_WEB_APP_URL}?date=${selectedDate}&plan=&callback=${callbackName}`;
             script.onerror = function () {
                 console.error('Error fetching available slots.');
                 timeSelect.innerHTML = '<option value="">エラーが発生しました</option>';
@@ -1626,14 +1572,13 @@
             document.body.appendChild(script);
         }
 
-        if (dateInput && timeSelect && planSelect) {
+        if (dateInput && timeSelect) {
             // 今日の日付を最小値に設定
             const d = new Date();
             d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
             dateInput.min = d.toISOString().split('T')[0];
 
             dateInput.addEventListener('change', fetchAvailableSlots);
-            planSelect.addEventListener('change', fetchAvailableSlots);
         }
 
         // --- 予約タイプの切り替え制御 ---
@@ -1674,6 +1619,23 @@
                 }
             });
         }
+
+        // URLパラメータによる自動モード切り替え (?mode=change)
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('mode') === 'change') {
+                const changeRadio = document.querySelector('input[name="reservationType"][value="change"]');
+                if (changeRadio) {
+                    changeRadio.checked = true;
+                    updateFormMode();
+                    // フォームへスクロール
+                    const reserveSection = document.getElementById('reserve');
+                    if (reserveSection) {
+                        reserveSection.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            }
+        });
 
         // --- お客様の声スライダー制御 ---
         const voiceSlider = document.getElementById('voice-slider');
