@@ -23,11 +23,6 @@ function getPlanSettings(planValue) {
     return { duration: 60, padding: 60, titlePrefix: "【要3時間確保】" };
   }
 
-  // 母の日特別撮影会プレミアムプラン（撮影1時間、パディングなしで計1時間枠）
-  if (planValue.includes("MothersDay")) {
-    return { duration: 60, padding: 0, titlePrefix: "【要1時間確保】" };
-  }
-
   // 桜撮影プラン（30分のみの確保：15分撮影＋前後7.5分ずつ）
   if (planValue.includes("Sakura")) {
     return { duration: 15, padding: 7.5, titlePrefix: "【要30分確保】" };
@@ -81,17 +76,6 @@ function doGet(e) {
     }
   }
 
-  if (requestPlan.includes("MothersDay")) {
-    // 日付文字列 (YYYY-MM-DD) で比較
-    let targetDate = requestDate; // e.g. "2026-04-29"
-    let availableDates = ["2026-04-29", "2026-05-01", "2026-05-02", "2026-05-03", "2026-05-04", "2026-05-05"];
-
-    if (availableDates.indexOf(targetDate) === -1) {
-      return ContentService.createTextOutput(JSON.stringify(["※母の日特別プランは4/29、5/1〜5/5限定です"]))
-        .setMimeType(ContentService.MimeType.JSON);
-    }
-  }
-
   let cal = CalendarApp.getCalendarById(CALENDAR_ID);
   let calPrivate = CalendarApp.getCalendarById(PRIVATE_CALENDAR_ID);
 
@@ -111,18 +95,10 @@ function doGet(e) {
   let durationMin = settings.duration;
   let paddingMin = settings.padding;
 
-  // 短時間プラン（桜）なら15分間隔、それ以外（母の日含む）は30分間隔でチェック
+  // 短時間プラン（桜）なら15分間隔、それ以外は30分間隔でチェック
   let intervalMin = requestPlan.includes("Sakura") ? 15 : 30;
 
   for (let m = START_HOUR * 60; m <= END_HOUR * 60; m += intervalMin) {
-    // 母の日プランの時間制限（10:00〜16:00）
-    // planValueまたはrequestPlanにMothersDayが含まれる場合
-    if (requestPlan.indexOf("MothersDay") !== -1) {
-      if (m < 10 * 60 || m > 16 * 60) {
-        continue;
-      }
-    }
-
     let hh = String(Math.floor(m / 60)).padStart(2, '0');
     let mm = String(m % 60).padStart(2, '0');
     let slotStart = new Date(requestDate + 'T' + hh + ':' + mm + ':00+09:00');
@@ -211,14 +187,6 @@ function doPost(e) {
   let requiredStart = new Date(startTime.getTime() - paddingMin * 60 * 1000);
   let requiredEnd = new Date(startTime.getTime() + (durationMin + paddingMin) * 60 * 1000);
 
-  // 母の日プランの時間制限バリデーション（念のため）
-  if (plan.indexOf("MothersDay") !== -1) {
-    let hh = parseInt(time.split(':')[0]);
-    if (hh < 10 || hh > 16) {
-      return HtmlService.createHtmlOutput('<div style="font-family:sans-serif; text-align:center; padding: 50px;"><b>エラー</b><br><br>母の日プランは10:00〜16:00の間のみ予約可能です。<br><br><button onclick="history.back()" style="padding: 10px 20px; background: #333; color: #fff; text-decoration: none; border-radius: 5px; border: none; cursor:pointer;">前の画面に戻る</button></div>');
-    }
-  }
-
   // 最終チェック：既に埋まっていないか再確認
   let events = cal.getEvents(requiredStart, requiredEnd).concat(calPrivate ? calPrivate.getEvents(requiredStart, requiredEnd) : []);
 
@@ -254,7 +222,6 @@ function doPost(e) {
       + "■メール：" + email + "\n"
       + (reservationType === 'change' ? "■元の予約日：" + oldDate + "\n■元の時間：" + oldTime + "\n" : "")
       + "■その他ご要望：\n" + (notes ? notes : "特になし") + "\n\n"
-      + (plan.includes("MothersDay") ? "【ご案内】\n母の日特別撮影会等に関する事前の確認事項は、公式LINE上にてご案内申し上げます。\n\n" : "")
       + "※こちらのメッセージをそのまま送信してください。\n折り返しご案内差し上げます。";
 
     let encodedMessage = encodeURIComponent(message);
