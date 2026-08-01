@@ -1,6 +1,7 @@
 // 【重要】事前に設定する変数
 const CALENDAR_ID = '5eb47285e0e87f86071036a91d5ecc414b1d7f94cec1eb308da790777111974f@group.calendar.google.com'; // 予約を書き込む専用カレンダー
 const PRIVATE_CALENDAR_ID = 'primary'; // プライベートの予定が入っているメインカレンダー（'primary'のままでOK）
+const SECOND_ACCOUNT_CALENDAR_ID = ''; // 【追加】2つ目のGoogleアカウントのカレンダーID（共有設定後、ここに入力してください）
 
 // 【営業時間（予約枠）と前後の移動時間（パディング）の設定】
 const START_HOUR = 7; // 予約受付開始時刻（7時）
@@ -14,6 +15,11 @@ const PADDING_MINUTES = 60; // 前後の移動・準備時間（前後1時間ず
  * @returns {{duration: number, padding: number, titlePrefix: string}} 
  */
 function getPlanSettings(planValue) {
+  // ひまわり撮影会プラン（撮影40分想定＋前後20分の移動時間、合計80分確保）
+  if (planValue.includes("Himawari") || planValue.includes("ひまわり")) {
+    return { duration: 40, padding: 20, titlePrefix: "【要80分確保】" };
+  }
+
   // 出張撮影・行事・ファミリー・1歳3回セット（前後1時間、合計3時間の確保が必要なプラン）
   if (planValue.includes("Birthday") ||
     planValue.includes("Family") ||
@@ -78,6 +84,7 @@ function doGet(e) {
 
   let cal = CalendarApp.getCalendarById(CALENDAR_ID);
   let calPrivate = CalendarApp.getCalendarById(PRIVATE_CALENDAR_ID);
+  let calSecond = SECOND_ACCOUNT_CALENDAR_ID ? CalendarApp.getCalendarById(SECOND_ACCOUNT_CALENDAR_ID) : null;
 
   if (!cal || !calPrivate) {
     return ContentService.createTextOutput(JSON.stringify(["カレンダーの接続エラー"]))
@@ -89,6 +96,9 @@ function doGet(e) {
 
   // 両方のカレンダーから予定を取得してマージ
   let events = cal.getEvents(startTime, endTime).concat(calPrivate.getEvents(startTime, endTime));
+  if (calSecond) {
+    events = events.concat(calSecond.getEvents(startTime, endTime));
+  }
 
   let availableSlots = [];
   let settings = getPlanSettings(requestPlan);
@@ -156,6 +166,7 @@ function doPost(e) {
 
   let cal = CalendarApp.getCalendarById(CALENDAR_ID);
   let calPrivate = CalendarApp.getCalendarById(PRIVATE_CALENDAR_ID);
+  let calSecond = SECOND_ACCOUNT_CALENDAR_ID ? CalendarApp.getCalendarById(SECOND_ACCOUNT_CALENDAR_ID) : null;
 
   // 【予約変更の場合】古い予約を自動で削除する
   if (reservationType === 'change' && oldDate && oldTime) {
@@ -189,6 +200,9 @@ function doPost(e) {
 
   // 最終チェック：既に埋まっていないか再確認
   let events = cal.getEvents(requiredStart, requiredEnd).concat(calPrivate ? calPrivate.getEvents(requiredStart, requiredEnd) : []);
+  if (calSecond) {
+    events = events.concat(calSecond.getEvents(requiredStart, requiredEnd));
+  }
 
   if (events.length > 0) {
     return HtmlService.createHtmlOutput('<div style="font-family:sans-serif; text-align:center; padding: 50px;"><b>申しわけありません。</b><br><br>まさに今、その時間は別の予約で埋まってしまいました。<br><br><button onclick="history.back()" style="padding: 10px 20px; background: #333; color: #fff; text-decoration: none; border-radius: 5px; border: none; cursor:pointer;">前の画面に戻る</button></div>');
