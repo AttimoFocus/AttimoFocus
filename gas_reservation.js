@@ -1,7 +1,7 @@
 // 【重要】事前に設定する変数
 const CALENDAR_ID = '5eb47285e0e87f86071036a91d5ecc414b1d7f94cec1eb308da790777111974f@group.calendar.google.com'; // 予約を書き込む専用カレンダー
 const PRIVATE_CALENDAR_ID = 'primary'; // プライベートの予定が入っているメインカレンダー（'primary'のままでOK）
-const SECOND_ACCOUNT_CALENDAR_ID = ''; // 【追加】2つ目のGoogleアカウントのカレンダーID（共有設定後、ここに入力してください）
+const SECOND_ACCOUNT_CALENDAR_ID = 'd_kusaga@fsc-inc.jp'; // 【追加】2つ目のGoogleアカウントのカレンダーID
 
 // 【営業時間（予約枠）と前後の移動時間（パディング）の設定】
 const START_HOUR = 7; // 予約受付開始時刻（7時）
