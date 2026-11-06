@@ -127,11 +127,17 @@
                     </span>
                 </div>
                 <!-- Links -->
-                <div class="flex items-center space-x-5 md:space-x-8">
-                    <a href="#plans" class="text-gray-800 hover:text-gray-900 transition text-sm font-bold">撮影プラン</a>
-                    <a href="#qa" class="text-gray-800 hover:text-gray-900 transition text-sm font-bold">よくある質問</a>
+                <div class="flex items-center space-x-3 md:space-x-8">
+                    <a href="#plans" class="text-gray-800 hover:text-gray-900 transition text-sm font-bold hidden md:inline">撮影プラン</a>
+                    <a href="#qa" class="text-gray-800 hover:text-gray-900 transition text-sm font-bold hidden md:inline">よくある質問</a>
                     <a href="#reserve"
                         class="bg-gray-900 text-white px-5 py-2 text-xs md:text-sm rounded-full hover:bg-gray-800 transition font-bold shadow-md">ご予約</a>
+                    <!-- Options Hamburger Menu Button -->
+                    <button id="optionsMenuBtn" class="text-gray-800 p-2 hover:bg-gray-100 rounded-full transition focus:outline-none flex items-center justify-center" aria-label="オプション料金">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -249,203 +255,74 @@
     </section>
 
     <!-- Plans セクション -->
-    <section id="plans" class="py-24 px-4 bg-white">
+    <section id="plans" class="py-24 md:py-32 px-6 bg-white w-full">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-light tracking-widest en-font mb-2 text-gray-800">撮影プラン</h2>
-                <p class="text-sm text-gray-500 tracking-widest">PLANS</p>
+            <div class="text-center mb-16 md:mb-24">
+                <h2 class="text-2xl md:text-3xl font-light tracking-[0.2em] mb-4 text-gray-800 en-font">PLANS</h2>
+                <p class="text-xs md:text-sm text-gray-400 tracking-[0.15em]">撮影プラン</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-
-
-
-
-                <!-- Plan 1 (Combined) -->
-                <div
-                    class="border border-gray-100 rounded-lg p-8 hover:shadow-xl transition-shadow bg-gray-50/50 relative overflow-hidden md:col-span-2">
-                    <div class="absolute top-0 right-0 bg-gray-800 text-white text-xs px-3 py-1 font-bold">1番人気</div>
-                    <h3 class="text-xl mb-1 mt-2">ファミリー・出張撮影（ハーフバースデー等）</h3>
-                    <p class="en-font tracking-wider text-sm text-gray-400 mb-6">Family & Location</p>
-                    <ul class="text-sm text-gray-600 space-y-3 mb-8">
-                        <li class="flex items-start">
-                            <span class="text-gray-400 mr-2">✓</span>
-                            <span>撮影時間：約60分〜90分</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-gray-400 mr-2">✓</span>
-                            <span>全データレタッチ済み</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-gray-400 mr-2">✓</span>
-                            <span>思い出を動くカタチで（ショート動画付き）</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-gray-400 mr-2">✓</span>
-                            <span>屋外（いつものご自宅や公園でのロケ撮影）</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-gray-400 mr-2">✓</span>
-                            <span>体調不良、雨天などの延期は無料対応。キャンセルの場合のみ20%のキャンセル料</span>
-                        </li>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- ファミリー・出張撮影 -->
+                <div class="border border-gray-200 rounded-sm p-8 md:p-10 hover:shadow-lg transition-shadow bg-[#FAFAFA] relative flex flex-col">
+                    <h3 class="text-lg md:text-xl mb-2 text-gray-800 tracking-[0.1em]">ファミリー・出張撮影</h3>
+                    <p class="text-xs text-gray-400 mb-8 tracking-[0.1em] en-font">Family &amp; Location</p>
+                    <ul class="text-sm text-gray-600 space-y-4 mb-12 tracking-[0.1em] leading-relaxed flex-grow">
+                        <li class="flex items-start"><span class="mr-3 text-gray-300">|</span>日常・お宮参り・ハーフバースデー等</li>
+                        <li class="flex items-start"><span class="mr-3 text-gray-300">|</span>撮影時間 約60分〜90分</li>
+                        <li class="flex items-start"><span class="mr-3 text-gray-300">|</span>全データレタッチ済み</li>
                     </ul>
-                    <div class="space-y-2 border-t border-gray-100 pt-6">
-                        <div class="flex justify-between items-center text-sm">
-                            <span>5カット</span>
-                            <span class="font-bold text-lg text-gray-900">¥6,000 <span
-                                    class="text-[10px] font-normal text-gray-400">(税込)</span></span>
+                    <div class="border-t border-gray-200 pt-8 mt-auto space-y-4">
+                        <div class="flex justify-between items-end px-2">
+                            <span class="text-sm text-gray-600 tracking-[0.1em]">15カット</span>
+                            <span class="text-xl font-medium text-gray-900 en-font">¥11,000<span class="text-xs font-normal ml-1 text-gray-500">(税込)</span></span>
                         </div>
-                        <div class="flex justify-between items-center text-sm">
-                            <span>15カット</span>
-                            <span class="font-bold text-lg text-gray-900">¥11,000 <span
-                                    class="text-[10px] font-normal text-gray-400">(税込)</span></span>
+                        <div class="flex justify-between items-end bg-white border border-[#c0a079] -mx-4 px-6 py-3 rounded-sm shadow-sm relative">
+                            <div class="absolute -top-3 left-4 bg-[#c0a079] text-white text-[10px] px-3 py-1 tracking-[0.1em]">一番人気</div>
+                            <span class="text-sm font-bold text-[#c0a079] tracking-[0.1em]">30カット</span>
+                            <span class="text-2xl font-bold text-[#c0a079] en-font">¥20,000<span class="text-xs font-normal ml-1 text-[#c0a079]">(税込)</span></span>
                         </div>
-                        <div class="flex justify-between items-center text-sm">
-                            <span>30カット</span>
-                            <span class="font-bold text-lg text-gray-900">¥19,000 <span
-                                    class="text-[10px] font-normal text-gray-400">(税込)</span></span>
-                        </div>
-                        <div class="flex justify-between items-center text-sm">
-                            <span>50カット</span>
-                            <span class="font-bold text-lg text-gray-900">¥33,000 <span
-                                    class="text-[10px] font-normal text-gray-400">(税込)</span></span>
-                        </div>
-                        <div class="flex justify-between items-center text-sm">
-                            <span class="font-bold text-gray-800">100カット</span>
-                            <span class="font-bold text-xl text-gray-900">¥55,000 <span
-                                    class="text-[10px] font-normal text-gray-400">(税込)</span></span>
+                        <div class="flex justify-between items-end px-2">
+                            <span class="text-sm text-gray-600 tracking-[0.1em]">50カット</span>
+                            <span class="text-xl font-medium text-gray-900 en-font">¥33,000<span class="text-xs font-normal ml-1 text-gray-500">(税込)</span></span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Plan Tama 1 Year Old Set -->
-                <div
-                    class="border border-[#e1d5c1] rounded-lg p-8 hover:shadow-xl transition-shadow bg-[#fbf9f6] relative overflow-hidden md:col-span-2">
-                    <div class="absolute top-0 right-0 bg-[#c0a079] text-white text-xs px-4 py-1.5 font-bold shadow-sm">
-                        出張対象エリア</div>
-                    <h3 class="text-xl mb-1 mt-2 text-gray-800 font-bold">1歳の思い出、妥協ゼロで完璧に残す。<br>プロによる3回セット撮影プラン</h3>
-                    <p class="en-font tracking-wider text-sm text-[#b08d66] mb-6">1st Anniversary Special Set</p>
-                    <p class="text-sm text-gray-700 leading-relaxed mb-6 font-bold">
-                        限界パパママを救う！1歳の特別な思い出を、プロの手で。<br>
-                        多摩・埼玉・神奈川エリアのパパママをサポートする、特製の3回撮影セットです。
-                    </p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                        <div
-                            class="bg-white p-4 rounded border border-[#e1d5c1] flex flex-col items-center text-center">
-                            <span
-                                class="w-8 h-8 rounded-full bg-[#f4ebd9] text-[#a47e53] font-bold flex items-center justify-center mb-2">1</span>
-                            <h4 class="font-bold text-gray-800 text-sm mb-2">1歳の誕生日会<br>＆親族集合</h4>
-                            <p class="text-xs text-gray-600">1歳の誕生日会をプロが撮影。親族全員の集合写真もバッチリ！</p>
-                        </div>
-                        <div
-                            class="bg-white p-4 rounded border border-[#e1d5c1] flex flex-col items-center text-center">
-                            <span
-                                class="w-8 h-8 rounded-full bg-[#f4ebd9] text-[#a47e53] font-bold flex items-center justify-center mb-2">2</span>
-                            <h4 class="font-bold text-gray-800 text-sm mb-2">お出かけ撮影</h4>
-                            <p class="text-xs text-gray-600">公園や近所でのお出かけ撮影。自然な表情を引き出します。</p>
-                        </div>
-                        <div
-                            class="bg-white p-4 rounded border border-[#e1d5c1] flex flex-col items-center text-center">
-                            <span
-                                class="w-8 h-8 rounded-full bg-[#f4ebd9] text-[#a47e53] font-bold flex items-center justify-center mb-2">3</span>
-                            <h4 class="font-bold text-gray-800 text-sm mb-2">自宅密着<br>ドキュメンタリー</h4>
-                            <p class="text-xs text-gray-600">ありのままの日常を記録。自宅でのリラックスした時間を。</p>
+                <!-- 七五三・成人式 前撮り -->
+                <div class="border border-gray-200 rounded-sm p-8 md:p-10 hover:shadow-lg transition-shadow bg-[#FAFAFA] relative flex flex-col">
+                    <h3 class="text-lg md:text-xl mb-2 text-gray-800 tracking-[0.1em]">七五三・成人式 前撮り</h3>
+                    <p class="text-xs text-gray-400 mb-8 tracking-[0.1em] en-font">Anniversary</p>
+                    <ul class="text-sm text-gray-600 space-y-4 mb-12 tracking-[0.1em] leading-relaxed flex-grow">
+                        <li class="flex items-start"><span class="mr-3 text-gray-300">|</span>七五三・成人式などの特別な日に</li>
+                        <li class="flex items-start"><span class="mr-3 text-gray-300">|</span>撮影時間 約60分〜90分</li>
+                        <li class="flex items-start"><span class="mr-3 text-gray-300">|</span>全データレタッチ済み</li>
+                        <li class="flex items-start font-bold"><span class="mr-3 text-gray-300 font-normal">|</span>思い出を動くカタチで（ショート動画付）</li>
+                    </ul>
+                    <div class="border-t border-gray-200 pt-8 mt-auto">
+                        <div class="flex justify-between items-end px-2">
+                            <span class="text-sm text-gray-600 tracking-[0.1em]">30カット</span>
+                            <span class="text-2xl font-medium text-gray-900 en-font">¥33,000<span class="text-xs font-normal ml-1 text-gray-500">(税込)</span></span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="grid grid-cols-1 gap-6 mb-8">
-                        <ul class="text-sm text-gray-600 space-y-3">
-                            <li class="flex items-start">
-                                <span class="text-[#c0a079] mr-2">✓</span>
-                                <span>場所：多摩エリア、埼玉（入間・所沢・川越周辺）、神奈川（相模原・横浜周辺）</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-[#c0a079] mr-2">✓</span>
-                                <span>対象：0歳〜1歳半の赤ちゃんとそのご家族</span>
-                            </li>
-                            <li class="flex items-start">
-                                <span class="text-[#c0a079] mr-2">✓</span>
-                                <span>定員：5名限定（先着順）</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="space-y-4 border-t border-[#e1d5c1] pt-6">
-                        <div class="flex flex-col md:flex-row justify-between items-center text-sm gap-4">
-                            <div class="flex flex-col text-center md:text-left w-full md:w-auto">
-                                <span class="font-bold text-gray-800">モニター価格 <span
-                                        class="text-xs font-normal text-gray-600 bg-[#f4ebd9] px-2 py-0.5 rounded border border-[#e1d5c1] ml-1">3回セット</span></span>
+                <!-- 0〜3歳の特別な思い出 3回撮影セット -->
+                <div class="border border-[#e1d5c1] rounded-sm p-8 md:p-10 hover:shadow-lg transition-shadow bg-white relative flex flex-col shadow-sm">
+                    <div class="absolute top-0 right-0 bg-[#c0a079] text-white text-[10px] md:text-xs px-4 py-2 tracking-[0.1em]">モニター限定</div>
+                    <h3 class="text-lg md:text-xl mb-2 text-gray-800 tracking-[0.1em]">0〜3歳の特別な思い出<br>3回撮影セット</h3>
+                    <p class="text-xs text-[#b08d66] mb-8 tracking-[0.1em] en-font">1st Anniversary Special Set</p>
+                    <ul class="text-sm text-gray-600 space-y-4 mb-12 tracking-[0.1em] leading-relaxed flex-grow">
+                        <li class="flex items-start"><span class="mr-3 text-[#c0a079]">|</span>誕生日会 ＋ お出かけ ＋ 自宅密着</li>
+                        <li class="flex items-start"><span class="mr-3 text-[#c0a079]">|</span>多摩・埼玉(一部)・神奈川(一部)</li>
+                    </ul>
+                    <div class="border-t border-[#e1d5c1] pt-8 mt-auto">
+                        <div class="flex flex-col items-end">
+                            <span class="text-xs text-gray-400 line-through mb-1 tracking-[0.1em]">通常 ¥88,000</span>
+                            <div class="flex justify-between items-end w-full">
+                                <span class="text-sm font-bold text-[#c0a079] tracking-[0.1em]">モニター価格</span>
+                                <span class="text-3xl font-medium text-gray-900 en-font">¥55,000<span class="text-xs font-normal ml-1 text-gray-500">(税込)</span></span>
                             </div>
-                            <div class="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
-                                <div class="flex flex-col items-center md:items-end">
-                                    <span class="text-sm text-gray-500 line-through mb-0.5">通常価格 ¥88,000</span>
-                                    <span class="font-bold text-3xl text-gray-900">¥55,000 <span
-                                            class="text-[10px] font-normal text-gray-500">(税込)</span></span>
-                                </div>
-                                <a href="https://lin.ee/yvDNcif" target="_blank" rel="noopener noreferrer"
-                                    class="w-full md:w-auto text-center bg-gray-900 text-white text-xs font-bold px-8 py-3 rounded-full hover:bg-gray-800 transition shadow">
-                                    お申し込みはこちら
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Plan 3 -->
-                <div class="border border-gray-100 rounded-lg p-8 hover:shadow-xl transition-shadow bg-gray-50/50">
-                    <h3 class="text-xl mb-1 mt-2">プロモーション / 法人 / 個人サロン</h3>
-                    <p class="en-font tracking-wider text-sm text-gray-400 mb-6">Promotion</p>
-                    <ul class="text-sm text-gray-600 space-y-3 mb-8">
-                        <li class="flex items-start">
-                            <span class="text-gray-400 mr-2">✓</span>
-                            <span>Photo 100cut (全データレタッチ)</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-gray-400 mr-2">✓</span>
-                            <span>Movie 2〜3分 (HPやSNS広告用)</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-gray-400 mr-2">✓</span>
-                            <span>Instagramリール用縦型動画も制作可</span>
-                        </li>
-                    </ul>
-                    <p class="text-lg font-bold">価格要相談</p>
-                </div>
-
-                <!-- Plan 4 (New) -->
-                <div class="border border-gray-100 rounded-lg p-8 hover:shadow-xl transition-shadow bg-gray-50/50">
-                    <h3 class="text-xl mb-1 mt-2">行事・イベント</h3>
-                    <p class="en-font tracking-wider text-sm text-gray-400 mb-6">Events</p>
-                    <ul class="text-sm text-gray-600 space-y-3 mb-8">
-                        <li class="flex items-start">
-                            <span class="text-gray-400 mr-2">✓</span>
-                            <span>Photo 30cut〜 (全データレタッチ)</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-gray-400 mr-2">✓</span>
-                            <span>ダイジェストMovie付き</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-gray-400 mr-2">✓</span>
-                            <span>神社・施設等での撮影許可確認<br>（要相談・基本はお客様へお願いしております）</span>
-                        </li>
-                    </ul>
-                    <div class="space-y-2 border-t border-gray-100 pt-6">
-                        <div class="flex justify-between items-center text-sm">
-                            <span>30カット</span>
-                            <span class="font-bold text-lg text-gray-900">¥33,000 <span
-                                    class="text-[10px] font-normal text-gray-400">(税込)</span></span>
-                        </div>
-                        <div class="flex justify-between items-center text-sm">
-                            <span>50カット</span>
-                            <span class="font-bold text-lg text-gray-900">¥55,000 <span
-                                    class="text-[10px] font-normal text-gray-400">(税込)</span></span>
-                        </div>
-                        <div class="flex justify-between items-center text-sm">
-                            <span class="font-bold text-gray-800">100カット</span>
-                            <span class="font-bold text-xl text-gray-900">¥110,000 <span
-                                    class="text-[10px] font-normal text-gray-400">(税込)</span></span>
                         </div>
                     </div>
                 </div>
@@ -1491,9 +1368,21 @@
                         </div>
                     </div>
 
-                    <!-- プラン選択は削除 -->
+                    <div class="mb-6 mt-6">
+                        <label class="block text-sm font-bold mb-2">撮影プラン <span
+                                class="text-red-500 text-xs font-normal">必須</span></label>
+                        <select name="plan" required
+                            class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition text-gray-700">
+                            <option value="">プランを選択してください</option>
+                            <option value="Family（ファミリー出張・15カット）">ファミリー出張（15カット）</option>
+                            <option value="Family（ファミリー出張・30カット）">【一番人気】ファミリー出張（30カット）</option>
+                            <option value="Family（ファミリー出張・50カット）">ファミリー出張（50カット）</option>
+                            <option value="Shichigosan（七五三・成人式前撮り）">七五三・成人式 前撮り</option>
+                            <option value="Tama1Year（3回撮影セット）">【モニター限定】0〜3歳の特別な思い出 3回撮影セット</option>
+                        </select>
+                    </div>
 
-                    <div>
+                    <div class="mt-6">
                         <label class="block text-sm font-bold mb-2">撮影ロケーション（スポット） <span
                                 class="text-red-500 text-xs font-normal">必須</span></label>
                         <input type="text" name="location" required
@@ -1743,6 +1632,224 @@
                 updateVoiceSlider();
             }, 6000);
         }
+    </script>
+    <!-- オプション料金スライドメニュー (Slide-out menu for Options) -->
+    <div id="optionsSidebar" class="fixed inset-y-0 right-0 w-full md:w-96 bg-white shadow-2xl z-[100] transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto">
+        <div class="p-6 pb-20">
+            <div class="flex justify-between items-center mb-6 sticky top-0 bg-white/90 backdrop-blur pt-2 pb-4 border-b border-gray-100 z-10">
+                <h3 class="text-xl font-bold tracking-widest en-font text-gray-800">OPTIONS<span class="text-xs ml-2 text-gray-500 tracking-normal font-sans">オプション料金表</span></h3>
+                <button id="closeOptionsBtn" class="text-gray-500 hover:text-gray-800 transition p-2 rounded-full hover:bg-gray-100">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <div class="space-y-8">
+                <!-- プリントアイテム -->
+                <div>
+                    <h4 class="font-bold border-b-2 border-gray-800 pb-2 mb-4 text-gray-800 text-sm flex items-center">
+                        <span class="bg-gray-800 text-white text-[10px] px-2 py-1 mr-2 rounded">プリント</span>プリントアイテム
+                    </h4>
+                    <ul class="space-y-3 text-sm text-gray-700">
+                        <li class="flex justify-between items-center bg-gray-50 p-3 rounded">
+                            <span>Tシャツ</span><span class="font-bold text-gray-900">¥5,000</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-gray-50 p-3 rounded">
+                            <span>マグカップ</span><span class="font-bold text-gray-900">¥4,200</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-gray-50 p-3 rounded">
+                            <span>クッション<span class="text-[10px] text-gray-500 block">300×300mm</span></span>
+                            <span class="font-bold text-gray-900 text-right"><span class="text-[10px] font-normal">片面</span> ¥5,000<br><span class="text-[10px] font-normal">両面</span> ¥6,800</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-gray-50 p-3 rounded">
+                            <span>トートバッグ<span class="text-[10px] text-gray-500 block">S (200×300) / M (373×350)</span></span>
+                            <span class="font-bold text-gray-900 text-right"><span class="text-[10px] font-normal">S</span> ¥5,000<br><span class="text-[10px] font-normal">M</span> ¥5,700</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-gray-50 p-3 rounded">
+                            <span>スマホリング</span><span class="font-bold text-gray-900">¥3,000</span>
+                        </li>
+                        <li class="flex justify-between items-center bg-gray-50 p-3 rounded">
+                            <span>スマホ手帳</span><span class="font-bold text-gray-900">¥6,000</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- フォトブック -->
+                <div>
+                    <h4 class="font-bold border-b-2 border-gray-800 pb-2 mb-2 text-gray-800 text-sm flex items-center">
+                        <span class="bg-gray-800 text-white text-[10px] px-2 py-1 mr-2 rounded">フォトブック</span>フォトブック
+                    </h4>
+                    <p class="text-[10px] text-gray-500 mb-4">※全種類、元画像の料金に制作費（+1,500円）が含まれた金額設定となっております。</p>
+                    
+                    <div class="space-y-3">
+                        <!-- ハードカバー -->
+                        <details class="group bg-gray-50 rounded border border-gray-200 overflow-hidden">
+                            <summary class="flex justify-between items-center p-3 font-bold text-sm text-gray-800 cursor-pointer hover:bg-gray-100 transition">
+                                <span>ハードカバー</span>
+                                <span class="transition group-open:rotate-180 text-xs text-gray-500">▼</span>
+                            </summary>
+                            <div class="p-3 border-t border-gray-200 bg-white text-xs space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">145×145mm</h5>
+                                    <ul class="space-y-1 text-gray-600">
+                                        <li class="flex justify-between"><span>16P</span><span class="font-bold">¥5,180</span></li>
+                                        <li class="flex justify-between"><span>24P</span><span class="font-bold">¥5,940</span></li>
+                                        <li class="flex justify-between"><span>32P</span><span class="font-bold">¥6,700</span></li>
+                                        <li class="flex justify-between"><span>40P</span><span class="font-bold">¥7,460</span></li>
+                                        <li class="flex justify-between"><span>48P</span><span class="font-bold">¥8,220</span></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">185×185mm</h5>
+                                    <ul class="space-y-1 text-gray-600">
+                                        <li class="flex justify-between"><span>16P</span><span class="font-bold">¥6,280</span></li>
+                                        <li class="flex justify-between"><span>24P</span><span class="font-bold">¥7,280</span></li>
+                                        <li class="flex justify-between"><span>32P</span><span class="font-bold">¥8,280</span></li>
+                                        <li class="flex justify-between"><span>40P</span><span class="font-bold">¥9,280</span></li>
+                                        <li class="flex justify-between"><span>48P</span><span class="font-bold">¥10,280</span></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">205×145mm</h5>
+                                    <ul class="space-y-1 text-gray-600">
+                                        <li class="flex justify-between"><span>16P</span><span class="font-bold">¥5,580</span></li>
+                                        <li class="flex justify-between"><span>24P</span><span class="font-bold">¥6,740</span></li>
+                                        <li class="flex justify-between"><span>32P</span><span class="font-bold">¥7,900</span></li>
+                                        <li class="flex justify-between"><span>40P</span><span class="font-bold">¥9,060</span></li>
+                                        <li class="flex justify-between"><span>48P</span><span class="font-bold">¥10,220</span></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">287×203mm</h5>
+                                    <ul class="space-y-1 text-gray-600">
+                                        <li class="flex justify-between"><span>16P</span><span class="font-bold">¥8,480</span></li>
+                                        <li class="flex justify-between"><span>24P</span><span class="font-bold">¥10,320</span></li>
+                                        <li class="flex justify-between"><span>32P</span><span class="font-bold">¥12,160</span></li>
+                                        <li class="flex justify-between"><span>40P</span><span class="font-bold">¥14,000</span></li>
+                                        <li class="flex justify-between"><span>48P</span><span class="font-bold">¥15,840</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </details>
+
+                        <!-- ソフトカバー -->
+                        <details class="group bg-gray-50 rounded border border-gray-200 overflow-hidden">
+                            <summary class="flex justify-between items-center p-3 font-bold text-sm text-gray-800 cursor-pointer hover:bg-gray-100 transition">
+                                <span>ソフトカバー</span>
+                                <span class="transition group-open:rotate-180 text-xs text-gray-500">▼</span>
+                            </summary>
+                            <div class="p-3 border-t border-gray-200 bg-white text-xs space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">145×145mm</h5>
+                                    <ul class="space-y-1 text-gray-600">
+                                        <li class="flex justify-between"><span>16P</span><span class="font-bold">¥3,070</span></li>
+                                        <li class="flex justify-between"><span>48P迄</span><span class="font-bold">〜¥4,670</span></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">185×185mm</h5>
+                                    <ul class="space-y-1 text-gray-600">
+                                        <li class="flex justify-between"><span>16P</span><span class="font-bold">¥4,330</span></li>
+                                        <li class="flex justify-between"><span>48P迄</span><span class="font-bold">〜¥6,410</span></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">130×200mm</h5>
+                                    <ul class="space-y-1 text-gray-600">
+                                        <li class="flex justify-between"><span>16P</span><span class="font-bold">¥3,580</span></li>
+                                        <li class="flex justify-between"><span>48P迄</span><span class="font-bold">〜¥5,420</span></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">205×145mm</h5>
+                                    <ul class="space-y-1 text-gray-600">
+                                        <li class="flex justify-between"><span>16P</span><span class="font-bold">¥4,160</span></li>
+                                        <li class="flex justify-between"><span>48P迄</span><span class="font-bold">〜¥6,000</span></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">250×176mm</h5>
+                                    <ul class="space-y-1 text-gray-600">
+                                        <li class="flex justify-between"><span>16P</span><span class="font-bold">¥5,140</span></li>
+                                        <li class="flex justify-between"><span>48P迄</span><span class="font-bold">〜¥7,220</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </details>
+
+                        <!-- リングタイプ -->
+                        <details class="group bg-gray-50 rounded border border-gray-200 overflow-hidden">
+                            <summary class="flex justify-between items-center p-3 font-bold text-sm text-gray-800 cursor-pointer hover:bg-gray-100 transition">
+                                <span>リングタイプ</span>
+                                <span class="transition group-open:rotate-180 text-xs text-gray-500">▼</span>
+                            </summary>
+                            <div class="p-3 border-t border-gray-200 bg-white text-xs space-y-4">
+                                <div>
+                                    <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">152×152mm</h5>
+                                    <ul class="space-y-1 text-gray-600">
+                                        <li class="flex justify-between"><span>15P</span><span class="font-bold">¥3,280</span></li>
+                                        <li class="flex justify-between"><span>35P迄</span><span class="font-bold">〜¥5,280</span></li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">210×152mm</h5>
+                                    <ul class="space-y-1 text-gray-600">
+                                        <li class="flex justify-between"><span>15P</span><span class="font-bold">¥3,920</span></li>
+                                        <li class="flex justify-between"><span>35P迄</span><span class="font-bold">〜¥6,120</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- デジタルアイテム -->
+                <div>
+                    <h4 class="font-bold border-b-2 border-gray-800 pb-2 mb-4 text-gray-800 text-sm flex items-center">
+                        <span class="bg-gray-800 text-white text-[10px] px-2 py-1 mr-2 rounded">デジタル</span>デジタルアイテム
+                    </h4>
+                    <ul class="space-y-3 text-sm text-gray-700">
+                        <li class="bg-gray-50 p-3 rounded">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold">AIによるイラスト生成</span><span class="font-bold text-gray-900">¥2,000</span>
+                            </div>
+                            <p class="text-[10px] text-gray-500 leading-relaxed">
+                                ※生成したイラストをアイテムにする場合は、2,000円＋各オプション料金となります。
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="optionsSidebarOverlay" class="fixed inset-0 bg-black/50 z-[90] hidden transition-opacity opacity-0"></div>
+
+    <!-- Sidebar Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.getElementById('optionsSidebar');
+            const overlay = document.getElementById('optionsSidebarOverlay');
+            const openBtn = document.getElementById('optionsMenuBtn');
+            const closeBtn = document.getElementById('closeOptionsBtn');
+
+            function openSidebar() {
+                sidebar.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+                // Give it a tiny delay to allow display:block to apply before animating opacity
+                setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                document.body.style.overflow = 'hidden'; // Prevent scrolling on main body
+            }
+
+            function closeSidebar() {
+                sidebar.classList.add('translate-x-full');
+                overlay.classList.add('opacity-0');
+                setTimeout(() => overlay.classList.add('hidden'), 300); // Wait for transition
+                document.body.style.overflow = '';
+            }
+
+            if (openBtn) openBtn.addEventListener('click', openSidebar);
+            if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+            if (overlay) overlay.addEventListener('click', closeSidebar);
+        });
     </script>
 </body>
 

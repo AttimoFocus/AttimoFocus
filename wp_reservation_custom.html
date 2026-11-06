@@ -1,0 +1,282 @@
+<!-- ==========================================
+【予約フォーム用 カスタムHTML】
+このコードをWordPressの「カスタムHTML」ブロックに貼り付けてください。
+※注意: 事前にTailwind CSSがサイト全体で読み込まれている必要があります。
+========================================== -->
+
+<!-- 予約フォーム (HTML部分) -->
+<section id="reserve" class="py-24 px-4 bg-gray-800 text-white">
+    <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl font-light tracking-widest en-font mb-2">ご予約フォーム</h2>
+        <p class="text-sm text-gray-400 tracking-widest mb-12">RESERVE</p>
+
+        <form id="reservationForm"
+            class="bg-white text-gray-800 p-6 md:p-10 rounded-2xl shadow-xl text-left max-w-2xl mx-auto mt-10">
+            <div class="space-y-6">
+                <!-- 予約タイプ（新規・変更） -->
+                <div class="flex gap-4 p-1 bg-gray-100 rounded-lg w-fit mb-8">
+                    <label class="cursor-pointer">
+                        <input type="radio" name="reservationType" value="new" checked class="hidden peer">
+                        <span class="block px-6 py-2 rounded-md peer-checked:bg-white peer-checked:text-gray-900 peer-checked:shadow-sm text-gray-500 text-sm font-bold transition">新規予約</span>
+                    </label>
+                    <label class="cursor-pointer">
+                        <input type="radio" name="reservationType" value="change" class="hidden peer">
+                        <span class="block px-6 py-2 rounded-md peer-checked:bg-white peer-checked:text-gray-900 peer-checked:shadow-sm text-gray-500 text-sm font-bold transition">予約変更</span>
+                    </label>
+                </div>
+
+                <!-- 予約変更時に表示されるフィールド -->
+                <div id="section-old-reservation"
+                    class="hidden p-4 bg-yellow-50 rounded-lg border border-yellow-100 mb-6">
+                    <p class="text-xs text-yellow-700 font-bold mb-3">元の予約情報を入力してください</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[11px] font-bold text-yellow-600 mb-1">元の予約日</label>
+                            <input type="date" name="oldDate"
+                                class="w-full px-3 py-2 bg-white border border-yellow-200 rounded focus:outline-none focus:border-yellow-400 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-bold text-yellow-600 mb-1">元の開始時間</label>
+                            <input type="time" name="oldTime"
+                                class="w-full px-3 py-2 bg-white border border-yellow-200 rounded focus:outline-none focus:border-yellow-400 text-sm">
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold mb-2">お名前（本名） <span
+                            class="text-red-500 text-xs font-normal">必須</span></label>
+                    <input type="text" name="name" required
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition"
+                        placeholder="山田 太郎">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold mb-2">LINEアカウント名（表示名） <span
+                            class="text-red-500 text-xs font-normal">必須</span></label>
+                    <p class="text-xs text-gray-500 mb-2">※ご予約者様を正確にお繋ぎするため、実際にご連絡いただくLINEの登録名をお書きください。</p>
+                    <input type="text" name="lineName" required
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition"
+                        placeholder="Daiki">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold mb-2">メールアドレス <span
+                                class="text-red-500 text-xs font-normal">必須</span></label>
+                        <input type="email" name="email" required
+                            class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition"
+                            placeholder="メールアドレスを入力">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-2">電話番号 <span
+                                class="text-red-500 text-xs font-normal">必須</span></label>
+                        <input type="tel" name="phone" required
+                            class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition"
+                            placeholder="連絡先電話番号（ハイフンなし可）">
+                    </div>
+                </div>
+
+                <div class="mb-6 mt-6">
+                    <label class="block text-sm font-bold mb-2">撮影プラン <span
+                            class="text-red-500 text-xs font-normal">必須</span></label>
+                    <select name="plan" required
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition text-gray-700">
+                        <option value="">プランを選択してください</option>
+                        <option value="Family（ファミリー出張・15カット）">ファミリー出張（15カット）</option>
+                        <option value="Family（ファミリー出張・30カット）">【一番人気】ファミリー出張（30カット）</option>
+                        <option value="Family（ファミリー出張・50カット）">ファミリー出張（50カット）</option>
+                        <option value="Shichigosan（七五三・成人式前撮り）">七五三・成人式 前撮り</option>
+                        <option value="Tama1Year（3回撮影セット）">【モニター限定】0〜3歳の特別な思い出 3回撮影セット</option>
+                    </select>
+                </div>
+
+                <div class="mt-6">
+                    <label class="block text-sm font-bold mb-2">撮影ロケーション（スポット） <span
+                            class="text-red-500 text-xs font-normal">必須</span></label>
+                    <input type="text" name="location" required
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition"
+                        placeholder="立川昭和記念公園、ご自宅など">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold mb-2">撮影希望日 <span
+                                class="text-red-500 text-xs font-normal">必須</span></label>
+                        <input type="date" id="reserveDate" name="date" required
+                            class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition text-gray-700">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-2">希望開始時間 <span
+                                class="text-red-500 text-xs font-normal">必須</span></label>
+                        <select id="reserveTime" name="time" required disabled
+                            class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition text-gray-700 disabled:opacity-50">
+                            <option value="">日付をご選択ください</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-2 mt-[-10px]">
+                        <p class="text-xs text-gray-400">※ご希望に添えない場合もございます。第二・第三候補がある場合は下部の「ご要望など」欄にご記入ください。</p>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold mb-2">その他・ご要望など</label>
+                    <textarea name="notes" rows="4"
+                        class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:border-gray-500 transition inline-block align-top"
+                        placeholder="ご質問や、撮影のイメージ、第二・第三希望の日時などがありましたらご記入ください。"></textarea>
+                </div>
+
+                <div class="pt-6 text-center">
+                    <button type="submit" id="submitBtn"
+                        class="w-full md:w-auto inline-block bg-gray-900 text-white px-16 py-4 rounded-full hover:bg-gray-800 transition shadow-lg font-bold tracking-widest text-base">
+                        予約を申し込む
+                    </button>
+                </div>
+            </div>
+            <p class="text-xs text-center text-gray-400 mt-6">※送信後、通常24時間以内に折り返しご連絡いたします。</p>
+        </form>
+
+        <div class="mt-16 text-sm text-gray-500">
+            <a href="https://www.instagram.com/daiki_photo7?igsh=MTN5bW96NGdoajM3aQ%3D%3D&utm_source=qr"
+                target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition mx-2 underline">インスタグラム</a> |
+            <a href="https://lin.ee/yvDNcif" target="_blank" rel="noopener noreferrer"
+                class="hover:text-white transition mx-2 underline">公式LINE</a>
+        </div>
+    </div>
+</section>
+
+<!-- 予約フォーム連携用 JavaScript -->
+<script>
+    // 【重要】GASでデプロイしたWebアプリケーションのURL
+    const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzo2JOhqN_GMxOpKKeO2dx3FYlJqOfWhO5YMdrvILr7bJ24wPv3Q_4dD8ARww39zJjnbQ/exec";
+
+    const dateInput = document.getElementById('reserveDate');
+    const timeSelect = document.getElementById('reserveTime');
+    const form = document.getElementById('reservationForm');
+
+    function fetchAvailableSlots() {
+        const selectedDate = dateInput.value;
+        const ts = new Date();
+        ts.setMinutes(ts.getMinutes() - ts.getTimezoneOffset());
+        const todayStr = ts.toISOString().split('T')[0];
+
+        if (selectedDate && selectedDate < todayStr) {
+            alert('過去の日付はご予約いただけません。');
+            dateInput.value = '';
+            timeSelect.innerHTML = '<option value="">日付をご選択ください</option>';
+            timeSelect.disabled = true;
+            return;
+        }
+
+        if (!selectedDate) {
+            timeSelect.innerHTML = '<option value="">日付をご選択ください</option>';
+            timeSelect.disabled = true;
+            return;
+        }
+
+        timeSelect.innerHTML = '<option value="">空き状況を確認中...</option>';
+        timeSelect.disabled = true;
+
+        form.action = GAS_WEB_APP_URL;
+        form.method = "POST";
+
+        // JSONPによるCORS回避リクエストを作成
+        const script = document.createElement('script');
+        const callbackName = 'jsonpCallback_' + Math.round(100000 * Math.random());
+
+        window[callbackName] = function (slots) {
+            timeSelect.innerHTML = '<option value="">時間を選択してください</option>';
+            if (slots && slots.length > 0) {
+                if (slots[0].includes("※")) {
+                    timeSelect.innerHTML = '<option value="">' + slots[0] + '</option>';
+                } else {
+                    slots.forEach(time => {
+                        const option = document.createElement('option');
+                        option.value = time;
+                        option.textContent = time;
+                        timeSelect.appendChild(option);
+                    });
+                    timeSelect.disabled = false;
+                }
+            } else {
+                timeSelect.innerHTML = '<option value="">この日はすべて埋まっています</option>';
+            }
+            delete window[callbackName];
+            document.body.removeChild(script);
+        };
+
+        script.src = `${GAS_WEB_APP_URL}?date=${selectedDate}&plan=&callback=${callbackName}`;
+        script.onerror = function () {
+            console.error('Error fetching available slots.');
+            timeSelect.innerHTML = '<option value="">エラーが発生しました</option>';
+            delete window[callbackName];
+            document.body.removeChild(script);
+        };
+
+        document.body.appendChild(script);
+    }
+
+    if (dateInput && timeSelect) {
+        // 今日の日付を最小値に設定
+        const d = new Date();
+        d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+        dateInput.min = d.toISOString().split('T')[0];
+
+        dateInput.addEventListener('change', fetchAvailableSlots);
+    }
+
+    // --- 予約タイプの切り替え制御 ---
+    const reservationTypeInputs = document.querySelectorAll('input[name="reservationType"]');
+    const sectionOldReservation = document.getElementById('section-old-reservation');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnChangeMode = document.getElementById('btn-change-mode');
+
+    function updateFormMode() {
+        const checkedInput = document.querySelector('input[name="reservationType"]:checked');
+        if(!checkedInput) return;
+        const isChange = checkedInput.value === 'change';
+        if (isChange) {
+            sectionOldReservation.classList.remove('hidden');
+            submitBtn.textContent = '予約の変更を申し込む';
+            document.querySelector('input[name="oldDate"]').required = true;
+            document.querySelector('input[name="oldTime"]').required = true;
+        } else {
+            sectionOldReservation.classList.add('hidden');
+            submitBtn.textContent = '予約を申し込む';
+            document.querySelector('input[name="oldDate"]').required = false;
+            document.querySelector('input[name="oldTime"]').required = false;
+        }
+    }
+
+    if (reservationTypeInputs.length > 0) {
+        reservationTypeInputs.forEach(input => {
+            input.addEventListener('change', updateFormMode);
+        });
+    }
+
+    if (btnChangeMode) {
+        btnChangeMode.addEventListener('click', (e) => {
+            const changeRadio = document.querySelector('input[name="reservationType"][value="change"]');
+            if (changeRadio) {
+                changeRadio.checked = true;
+                updateFormMode();
+            }
+        });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('mode') === 'change') {
+            const changeRadio = document.querySelector('input[name="reservationType"][value="change"]');
+            if (changeRadio) {
+                changeRadio.checked = true;
+                updateFormMode();
+                const reserveSection = document.getElementById('reserve');
+                if (reserveSection) {
+                    reserveSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        }
+    });
+</script>

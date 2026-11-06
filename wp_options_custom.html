@@ -1,0 +1,233 @@
+<!-- ==========================================
+【オプションメニュー用 カスタムHTML】
+このコードをWordPressの「カスタムHTML」ブロックに貼り付けてください。
+※注意: 事前にTailwind CSSがサイト全体で読み込まれている必要があります。
+========================================== -->
+
+<!-- メニューを開くためのボタン（任意の場所に配置してください） -->
+<div class="my-4">
+    <button id="optionsMenuBtn" class="bg-white text-gray-800 px-4 py-2 hover:bg-gray-100 rounded-full transition focus:outline-none flex items-center justify-center border border-gray-200 shadow-sm" aria-label="オプション料金">
+        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <span class="text-sm font-bold">オプション料金を確認する</span>
+    </button>
+</div>
+
+<!-- オプション料金スライドメニュー本体 -->
+<div id="optionsSidebar" class="fixed inset-y-0 right-0 w-full md:w-96 bg-white shadow-2xl z-[100] transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto">
+    <div class="p-6 pb-20">
+        <div class="flex justify-between items-center mb-6 sticky top-0 bg-white/90 backdrop-blur pt-2 pb-4 border-b border-gray-100 z-10">
+            <h3 class="text-xl font-bold tracking-widest en-font text-gray-800">OPTIONS<span class="text-xs ml-2 text-gray-500 tracking-normal font-sans">オプション料金表</span></h3>
+            <button id="closeOptionsBtn" class="text-gray-500 hover:text-gray-800 transition p-2 rounded-full hover:bg-gray-100">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+        </div>
+        
+        <div class="space-y-8">
+            <!-- プリントアイテム -->
+            <div>
+                <h4 class="font-bold border-b-2 border-gray-800 pb-2 mb-4 text-gray-800 text-sm flex items-center">
+                    <span class="bg-gray-800 text-white text-[10px] px-2 py-1 mr-2 rounded">プリント</span>プリントアイテム
+                </h4>
+                <ul class="space-y-3 text-sm text-gray-700">
+                    <li class="flex justify-between items-center bg-gray-50 p-3 rounded">
+                        <span>Tシャツ</span><span class="font-bold text-gray-900">¥5,000</span>
+                    </li>
+                    <li class="flex justify-between items-center bg-gray-50 p-3 rounded">
+                        <span>マグカップ</span><span class="font-bold text-gray-900">¥4,200</span>
+                    </li>
+                    <li class="flex justify-between items-center bg-gray-50 p-3 rounded">
+                        <span>クッション<span class="text-[10px] text-gray-500 block">300×300mm</span></span>
+                        <span class="font-bold text-gray-900 text-right"><span class="text-[10px] font-normal">片面</span> ¥5,000<br><span class="text-[10px] font-normal">両面</span> ¥6,800</span>
+                    </li>
+                    <li class="flex justify-between items-center bg-gray-50 p-3 rounded">
+                        <span>トートバッグ<span class="text-[10px] text-gray-500 block">S (200×300) / M (373×350)</span></span>
+                        <span class="font-bold text-gray-900 text-right"><span class="text-[10px] font-normal">S</span> ¥5,000<br><span class="text-[10px] font-normal">M</span> ¥5,700</span>
+                    </li>
+                    <li class="flex justify-between items-center bg-gray-50 p-3 rounded">
+                        <span>スマホリング</span><span class="font-bold text-gray-900">¥3,000</span>
+                    </li>
+                    <li class="flex justify-between items-center bg-gray-50 p-3 rounded">
+                        <span>スマホ手帳</span><span class="font-bold text-gray-900">¥6,000</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- フォトブック -->
+            <div>
+                <h4 class="font-bold border-b-2 border-gray-800 pb-2 mb-2 text-gray-800 text-sm flex items-center">
+                    <span class="bg-gray-800 text-white text-[10px] px-2 py-1 mr-2 rounded">フォトブック</span>フォトブック
+                </h4>
+                <p class="text-[10px] text-gray-500 mb-4">※全種類、元画像の料金に制作費（+1,500円）が含まれた金額設定となっております。</p>
+                
+                <div class="space-y-3">
+                    <!-- ハードカバー -->
+                    <details class="group bg-gray-50 rounded border border-gray-200 overflow-hidden">
+                        <summary class="flex justify-between items-center p-3 font-bold text-sm text-gray-800 cursor-pointer hover:bg-gray-100 transition">
+                            <span>ハードカバー</span>
+                            <span class="transition group-open:rotate-180 text-xs text-gray-500">▼</span>
+                        </summary>
+                        <div class="p-3 border-t border-gray-200 bg-white text-xs space-y-4">
+                            <div>
+                                <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">145×145mm</h5>
+                                <ul class="space-y-1 text-gray-600">
+                                    <li class="flex justify-between"><span>16P</span><span class="font-bold">¥5,180</span></li>
+                                    <li class="flex justify-between"><span>24P</span><span class="font-bold">¥5,940</span></li>
+                                    <li class="flex justify-between"><span>32P</span><span class="font-bold">¥6,700</span></li>
+                                    <li class="flex justify-between"><span>40P</span><span class="font-bold">¥7,460</span></li>
+                                    <li class="flex justify-between"><span>48P</span><span class="font-bold">¥8,220</span></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">185×185mm</h5>
+                                <ul class="space-y-1 text-gray-600">
+                                    <li class="flex justify-between"><span>16P</span><span class="font-bold">¥6,280</span></li>
+                                    <li class="flex justify-between"><span>24P</span><span class="font-bold">¥7,280</span></li>
+                                    <li class="flex justify-between"><span>32P</span><span class="font-bold">¥8,280</span></li>
+                                    <li class="flex justify-between"><span>40P</span><span class="font-bold">¥9,280</span></li>
+                                    <li class="flex justify-between"><span>48P</span><span class="font-bold">¥10,280</span></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">205×145mm</h5>
+                                <ul class="space-y-1 text-gray-600">
+                                    <li class="flex justify-between"><span>16P</span><span class="font-bold">¥5,580</span></li>
+                                    <li class="flex justify-between"><span>24P</span><span class="font-bold">¥6,740</span></li>
+                                    <li class="flex justify-between"><span>32P</span><span class="font-bold">¥7,900</span></li>
+                                    <li class="flex justify-between"><span>40P</span><span class="font-bold">¥9,060</span></li>
+                                    <li class="flex justify-between"><span>48P</span><span class="font-bold">¥10,220</span></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">287×203mm</h5>
+                                <ul class="space-y-1 text-gray-600">
+                                    <li class="flex justify-between"><span>16P</span><span class="font-bold">¥8,480</span></li>
+                                    <li class="flex justify-between"><span>24P</span><span class="font-bold">¥10,320</span></li>
+                                    <li class="flex justify-between"><span>32P</span><span class="font-bold">¥12,160</span></li>
+                                    <li class="flex justify-between"><span>40P</span><span class="font-bold">¥14,000</span></li>
+                                    <li class="flex justify-between"><span>48P</span><span class="font-bold">¥15,840</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- ソフトカバー -->
+                    <details class="group bg-gray-50 rounded border border-gray-200 overflow-hidden">
+                        <summary class="flex justify-between items-center p-3 font-bold text-sm text-gray-800 cursor-pointer hover:bg-gray-100 transition">
+                            <span>ソフトカバー</span>
+                            <span class="transition group-open:rotate-180 text-xs text-gray-500">▼</span>
+                        </summary>
+                        <div class="p-3 border-t border-gray-200 bg-white text-xs space-y-4">
+                            <div>
+                                <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">145×145mm</h5>
+                                <ul class="space-y-1 text-gray-600">
+                                    <li class="flex justify-between"><span>16P</span><span class="font-bold">¥3,070</span></li>
+                                    <li class="flex justify-between"><span>48P迄</span><span class="font-bold">〜¥4,670</span></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">185×185mm</h5>
+                                <ul class="space-y-1 text-gray-600">
+                                    <li class="flex justify-between"><span>16P</span><span class="font-bold">¥4,330</span></li>
+                                    <li class="flex justify-between"><span>48P迄</span><span class="font-bold">〜¥6,410</span></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">130×200mm</h5>
+                                <ul class="space-y-1 text-gray-600">
+                                    <li class="flex justify-between"><span>16P</span><span class="font-bold">¥3,580</span></li>
+                                    <li class="flex justify-between"><span>48P迄</span><span class="font-bold">〜¥5,420</span></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">205×145mm</h5>
+                                <ul class="space-y-1 text-gray-600">
+                                    <li class="flex justify-between"><span>16P</span><span class="font-bold">¥4,160</span></li>
+                                    <li class="flex justify-between"><span>48P迄</span><span class="font-bold">〜¥6,000</span></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">250×176mm</h5>
+                                <ul class="space-y-1 text-gray-600">
+                                    <li class="flex justify-between"><span>16P</span><span class="font-bold">¥5,140</span></li>
+                                    <li class="flex justify-between"><span>48P迄</span><span class="font-bold">〜¥7,220</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </details>
+
+                    <!-- リングタイプ -->
+                    <details class="group bg-gray-50 rounded border border-gray-200 overflow-hidden">
+                        <summary class="flex justify-between items-center p-3 font-bold text-sm text-gray-800 cursor-pointer hover:bg-gray-100 transition">
+                            <span>リングタイプ</span>
+                            <span class="transition group-open:rotate-180 text-xs text-gray-500">▼</span>
+                        </summary>
+                        <div class="p-3 border-t border-gray-200 bg-white text-xs space-y-4">
+                            <div>
+                                <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">152×152mm</h5>
+                                <ul class="space-y-1 text-gray-600">
+                                    <li class="flex justify-between"><span>15P</span><span class="font-bold">¥3,280</span></li>
+                                    <li class="flex justify-between"><span>35P迄</span><span class="font-bold">〜¥5,280</span></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-gray-700 border-b border-gray-100 pb-1 mb-2">210×152mm</h5>
+                                <ul class="space-y-1 text-gray-600">
+                                    <li class="flex justify-between"><span>15P</span><span class="font-bold">¥3,920</span></li>
+                                    <li class="flex justify-between"><span>35P迄</span><span class="font-bold">〜¥6,120</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- デジタルアイテム -->
+            <div>
+                <h4 class="font-bold border-b-2 border-gray-800 pb-2 mb-4 text-gray-800 text-sm flex items-center">
+                    <span class="bg-gray-800 text-white text-[10px] px-2 py-1 mr-2 rounded">デジタル</span>デジタルアイテム
+                </h4>
+                <ul class="space-y-3 text-sm text-gray-700">
+                    <li class="bg-gray-50 p-3 rounded">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-bold">AIによるイラスト生成</span><span class="font-bold text-gray-900">¥2,000</span>
+                        </div>
+                        <p class="text-[10px] text-gray-500 leading-relaxed">
+                            ※生成したイラストをアイテムにする場合は、2,000円＋各オプション料金となります。
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="optionsSidebarOverlay" class="fixed inset-0 bg-black/50 z-[90] hidden transition-opacity opacity-0"></div>
+
+<!-- オプションメニュー開閉用 JavaScript -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sidebar = document.getElementById('optionsSidebar');
+        const overlay = document.getElementById('optionsSidebarOverlay');
+        const openBtn = document.getElementById('optionsMenuBtn');
+        const closeBtn = document.getElementById('closeOptionsBtn');
+
+        function openSidebar() {
+            sidebar.classList.remove('translate-x-full');
+            overlay.classList.remove('hidden');
+            setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            sidebar.classList.add('translate-x-full');
+            overlay.classList.add('opacity-0');
+            setTimeout(() => overlay.classList.add('hidden'), 300);
+            document.body.style.overflow = '';
+        }
+
+        if (openBtn) openBtn.addEventListener('click', openSidebar);
+        if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+        if (overlay) overlay.addEventListener('click', closeSidebar);
+    });
+</script>
